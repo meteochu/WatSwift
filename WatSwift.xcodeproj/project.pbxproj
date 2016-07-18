@@ -10,6 +10,10 @@
 		A1C857F51D3CDE7100CA77C7 /* WatSwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A1C857EB1D3CDE7100CA77C7 /* WatSwift.framework */; };
 		A1C857FA1D3CDE7100CA77C7 /* WatSwiftTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1C857F91D3CDE7100CA77C7 /* WatSwiftTests.swift */; };
 		A1C857FC1D3CDE7100CA77C7 /* WatSwift.h in Headers */ = {isa = PBXBuildFile; fileRef = A1C857EE1D3CDE7100CA77C7 /* WatSwift.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		A1C858081D3CDE8200CA77C7 /* WatSwift.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1C858071D3CDE8200CA77C7 /* WatSwift.swift */; };
+		A1C8580A1D3CE19D00CA77C7 /* JSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1C858091D3CE19D00CA77C7 /* JSON.swift */; };
+		A1C858151D3D11B700CA77C7 /* WatSwift.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1C858071D3CDE8200CA77C7 /* WatSwift.swift */; };
+		A1C8581A1D3D11B700CA77C7 /* JSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1C858091D3CE19D00CA77C7 /* JSON.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -29,6 +33,8 @@
 		A1C857F41D3CDE7100CA77C7 /* WatSwiftTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = WatSwiftTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		A1C857F91D3CDE7100CA77C7 /* WatSwiftTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WatSwiftTests.swift; sourceTree = "<group>"; };
 		A1C857FB1D3CDE7100CA77C7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		A1C858071D3CDE8200CA77C7 /* WatSwift.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WatSwift.swift; sourceTree = "<group>"; };
+		A1C858091D3CE19D00CA77C7 /* JSON.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JSON.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -71,8 +77,10 @@
 		A1C857ED1D3CDE7100CA77C7 /* WatSwift */ = {
 			isa = PBXGroup;
 			children = (
-				A1C857EE1D3CDE7100CA77C7 /* WatSwift.h */,
+				A1C858071D3CDE8200CA77C7 /* WatSwift.swift */,
+				A1C858091D3CE19D00CA77C7 /* JSON.swift */,
 				A1C857EF1D3CDE7100CA77C7 /* Info.plist */,
+				A1C857EE1D3CDE7100CA77C7 /* WatSwift.h */,
 			);
 			path = WatSwift;
 			sourceTree = "<group>";
@@ -150,6 +158,7 @@
 						CreatedOnToolsVersion = 8.0;
 						DevelopmentTeam = TSCXJ4KWQ4;
 						DevelopmentTeamName = "Andy Liang";
+						LastSwiftMigration = 0800;
 						ProvisioningStyle = Automatic;
 					};
 					A1C857F31D3CDE7100CA77C7 = {
@@ -200,6 +209,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A1C858081D3CDE8200CA77C7 /* WatSwift.swift in Sources */,
+				A1C8580A1D3CE19D00CA77C7 /* JSON.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -207,6 +218,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A1C8581A1D3D11B700CA77C7 /* JSON.swift in Sources */,
+				A1C858151D3D11B700CA77C7 /* WatSwift.swift in Sources */,
 				A1C857FA1D3CDE7100CA77C7 /* WatSwiftTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -320,6 +333,7 @@
 		A1C858001D3CDE7100CA77C7 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
 				DEFINES_MODULE = YES;
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
@@ -330,6 +344,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.andyliang.WatSwift;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 3.0;
 			};
 			name = Debug;
@@ -337,6 +352,7 @@
 		A1C858011D3CDE7100CA77C7 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
 				DEFINES_MODULE = YES;
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
@@ -392,6 +408,7 @@
 				A1C858011D3CDE7100CA77C7 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		A1C858021D3CDE7100CA77C7 /* Build configuration list for PBXNativeTarget "WatSwiftTests" */ = {
 			isa = XCConfigurationList;
@@ -400,6 +417,7 @@
 				A1C858041D3CDE7100CA77C7 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
