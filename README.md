@@ -3,6 +3,11 @@ Waterloo OpenData Client in Swift. WatSwift supports all OpenData endpoints, and
 
 ## Getting Started
 
+### Installation
+WatSwift can be installed by simply dragging the WatSwift Xcode Project (`.xcodeproj`) into your own project, and adding the `WatSwift` framework as an embedded framework. Alternatively, you can install by adding the 2 WatSwift files (`WatSwift.swift`, and `JSON.swift`) into your project. 
+
+### Usage
+
 Before you begin to use `WatSwift`, set your API key:
 ```swift
 WatSwift.apiKey = "------YOUR API KEY--------"
@@ -27,7 +32,7 @@ if let outletName = data["outlets"][0]["outlet_name"].string {
 }
 ```
 
-The JSON wrapper is courtesy of [Swifter](https://github.com/mattdonnelly/Swifter).
+The JSON wrapper is courtesy of [mattdonnelly's Swifter: a Twitter Framework written in Swift.](https://github.com/mattdonnelly/Swifter).
 
 ### Obtaining an API Key
 You need a valid API key to access the uWaterloo OpenData API; you can get one [here](https://api.uwaterloo.ca).
@@ -37,4 +42,5 @@ The Official API Documentation can be found [here](https://github.com/uWaterloo/
 
 ### License
 WatSwift is licensed under the MIT License. See the LICENSE file for more information.
+
 Waterloo OpenData is licensed under [ODL (Open Data License) Agreement](https://uwaterloo.ca/open-data/university-waterloo-open-data-license-agreement-v1)
