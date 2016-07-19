@@ -84,30 +84,66 @@ extension WatBase {
     
 }
 
-// - MARK: API
-
 public struct API: WatBase {
     
+    
+    /**
+     [GET /api/usage](https://github.com/uWaterloo/api-documentation/blob/master/v2/api/usage.md)
+     
+     Returns user's api usage statistics
+     
+     - parameter handler: The JSON handler for the JSON response.
+     */
     public func usage(handler: JSONHandler) {
         let path = "api/usage.json"
         self.get(at: path, using: handler)
     }
     
+    
+    /**
+     [GET /api/services](https://github.com/uWaterloo/api-documentation/blob/master/v2/api/services.md)
+     
+     Returns user's api services available to use
+     
+     - parameter handler: The JSON handler for the JSON response.
+     */
     public func services(handler: JSONHandler) {
         let path = "api/services.json"
         self.get(at: path, using: handler)
     }
     
+    
+    /**
+     [GET /api/methods](https://github.com/uWaterloo/api-documentation/blob/master/v2/api/methods.md)
+     
+     Returns user's api methods available to use
+     
+     - parameter handler: The JSON handler for the JSON response.
+     */
     public func methods(handler: JSONHandler) {
         let path = "api/methods.json"
         self.get(at: path, using: handler)
     }
-    
+
+    /**
+     [GET /api/versions](https://github.com/uWaterloo/api-documentation/blob/master/v2/api/versions.md)
+     
+     Returns the api version listings
+     
+     - parameter handler: The JSON handler for the JSON response.
+     */
     public func versions(handler: JSONHandler) {
         let path = "api/versions.json"
         self.get(at: path, using: handler)
     }
     
+    /**
+     [GET /api/changelog](https://github.com/uWaterloo/api-documentation/blob/master/v2/api/changelog.md)
+     
+     Returns a list of changes made to the API
+     
+     - parameter handler: The JSON handler for the JSON response.
+     */
     public func changelog(handler: JSONHandler) {
         let path = "api/changelog.json"
         self.get(at: path, using: handler)
@@ -115,18 +151,12 @@ public struct API: WatBase {
     
 }
 
-// - MARK: Awards
-
 public struct Awards: WatBase {
     
     /**
-     `GET /awards/graduate.json`
+     [GET /awards/graduate](https://github.com/uWaterloo/api-documentation/blob/master/v2/awards/graduate.md)
      
      Returns a list of all graduate awards, bursaries and scholarships available to students
-     
-     - SeeAlso:
-     [/awards/graduate]
-     (https://github.com/uWaterloo/api-documentation/blob/master/v2/awards/graduate.md)
      
      - parameter handler: The JSON handler for the JSON response.
      */
@@ -136,13 +166,9 @@ public struct Awards: WatBase {
     }
     
     /**
-     `GET /awards/undergraduate.json`
+     [GET /awards/undergraduate](https://github.com/uWaterloo/api-documentation/blob/master/v2/awards/undergraduate.md)
      
      Returns a list of all undergraduate awards, bursaries and scholarships available to students
-     
-     - SeeAlso:
-     [/awards/undergraduate]
-     (https://github.com/uWaterloo/api-documentation/blob/master/v2/awards/undergraduate.md)
      
      - parameter handler: The JSON handler for the JSON response.
      */
@@ -153,48 +179,105 @@ public struct Awards: WatBase {
     
 }
 
-// - MARK: Blogs
-
 public struct Blogs: WatBase {
     
-    /// This method returns a list of all blog posts for a given site
-    public func blog(forSite siteName: String, handler: JSONHandler) {
-        let path = "blogs/\(siteName).json"
+    /**
+     [GET /blogs/{site}](https://github.com/uWaterloo/api-documentation/blob/master/v2/blogs/blogs_site.md)
+     
+     Returns a list of all blog posts for a given site
+     
+     - parameters:
+        - site: Valid Site ID
+        - handler: The JSON handler for the JSON response.
+     */
+    public func blogPosts(forSite site: String, handler: JSONHandler) {
+        let path = "blogs/\(site).json"
         self.get(at: path, using: handler)
     }
     
-    /// This method returns a blog posts details for a post id
-    public func blogPost(forID postID: String, onSite siteName: String, handler: JSONHandler) {
-        let path = "blogs/\(siteName)/\(postID).json"
+    /**
+     [GET /blogs/{site}/{id}](https://github.com/uWaterloo/api-documentation/blob/master/v2/blogs/blogs_site.md)
+     
+     Returns a blog posts details for a post id
+     
+     - parameters:
+        - postID: Valid Post ID
+        - site: Valid Site ID
+        - handler: The JSON handler for the JSON response.
+     */
+    public func blogPost(forID postID: String, onSite site: String, handler: JSONHandler) {
+        let path = "blogs/\(site)/\(postID).json"
         self.get(at: path, using: handler)
     }
     
 }
 
-// - MARK: Building
-
 public struct Buildings: WatBase {
     
+    /**
+     [GET /buildings/list](https://github.com/uWaterloo/api-documentation/blob/master/v2/buildings/list.md)
+     
+     Returns a list of official building names, codes, numbers, and their lat/long coordinates.
+     
+     - parameter handler: The JSON handler for the JSON response.
+     */
     public func listAll(handler: JSONHandler) {
         let path = "buildings/list.json"
         self.get(at: path, using: handler)
     }
     
+    /**
+     [GET /buildings/{builing_code}](https://github.com/uWaterloo/api-documentation/blob/master/v2/buildings/building_acronym.md)
+     
+     Returns the official building name, its unique number, and its lat/long coordinates given a building code.
+     
+     - parameters:
+        - code: Valid uWaterloo building code.
+        - handler: The JSON handler for the JSON response.
+     */
     public func building(forCode code: String, handler: JSONHandler) {
         let path = "buildings/\(code).json"
         self.get(at: path, using: handler)
     }
     
+    /**
+     [GET /buildings/{builing}/{room}/courses](https://github.com/uWaterloo/api-documentation/blob/master/v2/buildings/building_acronym_room_number_courses.md)
+     
+     Returns the all the courses offered in a given classroom.
+     
+     - parameters:
+        - room: Valid uWaterloo room number.
+        - building: Valid uWaterloo building code.
+        - handler: The JSON handler for the JSON response.
+     */
     public func courses(forRoom room: String, inBuilding building: String, handler: JSONHandler) {
         let path = "buildings/\(building)/\(room)/courses.json"
         self.get(at: path, using: handler)
     }
     
+    /**
+     [GET /buildings/{builing_code}/accesspoint](https://github.com/uWaterloo/api-documentation/blob/master/v2/buildings/building_acronym_accesspoints.md)
+     
+     Returns list of all access points in that given building.
+     
+     - parameters:
+        - building: Valid uWaterloo building code.
+        - handler: The JSON handler for the JSON response.
+     */
     public func accesspoints(in building: String, handler: JSONHandler) {
         let path = "buildings/\(building)/accesspoints.json"
         self.get(at: path, using: handler)
     }
     
+    /**
+     [GET /buildings/{builing_code}/vendingmachines](https://github.com/uWaterloo/api-documentation/blob/master/v2/buildings/building_acronym_vendingmachines.md)
+     
+     Returns list of all vending machines in that given building.
+     
+     - parameters:
+        - building: Valid uWaterloo building code.
+        - handler: The JSON handler for the JSON response.
+     */
     public func vendingMachines(in building: String, handler: JSONHandler) {
         let path = "buildings/\(building)/vendingmachines.json"
         self.get(at: path, using: handler)
@@ -202,71 +285,79 @@ public struct Buildings: WatBase {
     
 }
 
-// - MARK: Codes
-
 public struct Codes: WatBase {
     
-    /// This method returns a list of all code lookups and their respective descriptions for organizations.
-    public func units(handler: JSONHandler) {
-        let path = "codes/units.json"
-        self.get(at: path, using: handler)
+    public enum CodeType: String {
+    
+        /**
+         [GET /cotes/units](https://github.com/uWaterloo/api-documentation/blob/master/v2/codes/units.md)
+         
+         Returns a list of all code lookups and their respective descriptions for organizations.
+         */
+        case units
+        
+        /**
+         [GET /cotes/terms](https://github.com/uWaterloo/api-documentation/blob/master/v2/codes/terms.md)
+         
+         Returns a list of all code lookups for terms.
+         */
+        case terms
+        
+        /**
+         [GET /cotes/groups](https://github.com/uWaterloo/api-documentation/blob/master/v2/codes/groups.md)
+         
+         Returns a list of all code lookups for groups.
+         */
+        case groups
+        
+        /**
+         [GET /cotes/subjects](https://github.com/uWaterloo/api-documentation/blob/master/v2/codes/subjects.md)
+         
+         Returns a list of all code lookups for subjects.
+         */
+        case subjects
+        
+        /**
+         [GET /cotes/instructions](https://github.com/uWaterloo/api-documentation/blob/master/v2/codes/instructions.md)
+         
+         Returns a list of instructions.
+         */
+        case instructions
+    
     }
     
-    /// This method returns a list of all code lookups for terms.
-    public func terms(handler: JSONHandler) {
-        let path = "codes/terms.json"
-        self.get(at: path, using: handler)
-    }
-    
-    /// This method returns a list of all code lookups for groups.
-    public func groups(handler: JSONHandler) {
-        let path = "codes/groups.json"
-        self.get(at: path, using: handler)
-    }
-    
-    /// This method returns a list of all code lookups for subjects.
-    public func subjects(handler: JSONHandler) {
-        let path = "codes/subjects.json"
-        self.get(at: path, using: handler)
-    }
-    
-    /// This method returns a list of Instructions.
-    public func instructions(handler: JSONHandler) {
-        let path = "codes/instructions.json"
+    /**
+     Lookup codes from the Waterloo OpenData
+     - parameters:
+        - type: The type of code to lookup (`.units`, `.terms`, etc)
+        - handler: The JSON handler for the JSON response.
+     */
+    public func lookup(type: CodeType, handler: JSONHandler) {
+        let path = "codes/\(type.rawValue).json"
         self.get(at: path, using: handler)
     }
     
 }
 
-// - MARK: Course
-
 public struct Courses: WatBase {
     
     /**
-     `GET /courses.json`
+     [GET /courses](https://github.com/uWaterloo/api-documentation/blob/master/v2/courses/courses.md)
      
      Returns a list of all courses (currently and historically) offered from the OpenData database
-     
+
      - note: This endpoint returns over 6000 courses!
-     - SeeAlso:
-     [/courses.json]
-     (https://github.com/uWaterloo/api-documentation/blob/master/v2/courses/courses.md)
-     
      - parameter handler: The JSON handler for the JSON response.
      */
-    public func allCoures(handler: JSONHandler) {
+    public func allCourses(handler: JSONHandler) {
         let path = "courses.json"
         self.get(at: path, using: handler)
     }
     
     /**
-     `GET /courses/{subject}.json`
+     [GET /courses/{subject}](https://github.com/uWaterloo/api-documentation/blob/master/v2/courses/subject.md)
      
      Returns all the courses offered under a given subject
-     
-     - SeeAlso:
-     [/courses/{subject}]
-     (https://github.com/uWaterloo/api-documentation/blob/master/v2/courses/subject.md)
      
      - parameters: 
         - subject: Valid uWaterloo Subject name
@@ -278,15 +369,11 @@ public struct Courses: WatBase {
     }
     
     /**
-     `GET /courses/{course_id}.json`
+     [GET /courses/{course_id}](https://github.com/uWaterloo/api-documentation/blob/master/v2/courses/course_id.md)
      
      Returns all available information for a given course
      
      - note: The course_id does not have to be left-padded with zeros
-     - SeeAlso:
-     [/courses/{course_id}]
-     (https://github.com/uWaterloo/api-documentation/blob/master/v2/courses/course_id.md)
-     
      - parameters:
         - courseID: Valid uWaterloo Course ID
         - handler: The JSON handler for the JSON response.
@@ -297,13 +384,9 @@ public struct Courses: WatBase {
     }
     
     /**
-     `GET /courses/{course_number}/schedule.json`
+     [GET /courses/{course_number}/schedule](https://github.com/uWaterloo/api-documentation/blob/master/v2/courses/class_number_schedule.md)
      
      Returns the class schedule for a given course and term
-     
-     - SeeAlso:
-     [/courses/{course_number}/schedule]
-     (https://github.com/uWaterloo/api-documentation/blob/master/v2/courses/class_number_schedule.md)
      
      - parameters:
         - classNumber: Valid uWaterloo Course Class Number
@@ -315,13 +398,9 @@ public struct Courses: WatBase {
     }
     
     /**
-     `GET /courses/{subject}/{catalog_number}.json`
+     [GET /courses/{subject}/{catalog_number}](https://github.com/uWaterloo/api-documentation/blob/master/v2/courses/subject_catalog_number.md)
      
      Returns the class schedule for a given course and term
-     
-     - SeeAlso:
-     [/courses/{subject}/{catalog_number}]
-     (https://github.com/uWaterloo/api-documentation/blob/master/v2/courses/subject_catalog_number.md)
      
      - parameters:
         - subject: Valid uWaterloo Subject Name
@@ -334,13 +413,9 @@ public struct Courses: WatBase {
     }
     
     /**
-     `GET /courses/{subject}/{catalog_number}/schedule.json`
+     [GET /courses/{subject}/{catalog_number}/schedule](https://github.com/uWaterloo/api-documentation/blob/master/v2/courses/subject_catalog_number_schedule.md)
      
      Returns the class schedule for a given course and term
-     
-     - SeeAlso:
-     [/courses/{subject}/{catalog_number}/schedule]
-     (https://github.com/uWaterloo/api-documentation/blob/master/v2/courses/subject_catalog_number_schedule.md)
      
      - parameters:
         - subject: Valid uWaterloo Subject Name
@@ -353,13 +428,9 @@ public struct Courses: WatBase {
     }
     
     /**
-     `GET /courses/{subject}/{catalog_number}/prerequisite.json`
+     [GET /courses/{subject}/{catalog_number}/prerequisite](https://github.com/uWaterloo/api-documentation/blob/master/v2/courses/subject_catalog_number_prerequisites.md)
      
      Returns parsed and raw representation of prerequisites for a given course
-     
-     - SeeAlso:
-     [/courses/{subject}/{catalog_number}/prerequisite]
-     (https://github.com/uWaterloo/api-documentation/blob/master/v2/courses/subject_catalog_number_prerequisites.md)
      
      - parameters:
         - subject: Valid uWaterloo Subject Name
@@ -372,13 +443,9 @@ public struct Courses: WatBase {
     }
     
     /**
-     `GET /courses/{subject}/{catalog_number}/examschedule.json`
+     [GET /courses/{subject}/{catalog_number}/examschedule](https://github.com/uWaterloo/api-documentation/blob/master/v2/courses/subject_catalog_number_examschedule.md)
      
      Returns a given course's exam schedule
-     
-     - SeeAlso:
-     [/courses/{subject}/{catalog_number}/examschedule]
-     (https://github.com/uWaterloo/api-documentation/blob/master/v2/courses/subject_catalog_number_examschedule.md)
      
      - parameters:
         - subject: Valid uWaterloo Subject Name
@@ -392,25 +459,57 @@ public struct Courses: WatBase {
     
 }
 
-// - MARK: Events
-
 public struct Events: WatBase {
     
-    public func events(handler: JSONHandler) {
+    
+    /**
+     [GET /events](https://github.com/uWaterloo/api-documentation/blob/master/v2/events/events.md)
+     
+     Returns a list of the upcoming 21 University of Waterloo events as crawled from all University WCMS sites.
+     
+     - parameter handler: The JSON handler for the JSON response.
+     */
+    public func allEvents(handler: JSONHandler) {
         let path = "events.json"
         self.get(at: path, using: handler)
     }
     
+    /**
+     [GET /events/{site}](https://github.com/uWaterloo/api-documentation/blob/master/v2/events/events_site.md)
+     
+     Returns a list of the upcoming site events given a site slug
+     
+     - parameters:
+        - siteName: Valid uWaterloo Site Slug from /resources/sites
+        - handler: The JSON handler for the JSON response.
+     */
     public func events(forSite siteName: String, handler: JSONHandler) {
         let path = "events/\(siteName).json"
         self.get(at: path, using: handler)
     }
     
+    /**
+     [GET /events/{site}/{id}](https://github.com/uWaterloo/api-documentation/blob/master/v2/events/events_site_id.md)
+     
+     Returns a specific event's information given a site slug and the unique id
+     
+     - parameters:
+        - eventID: Valid Event ID
+        - site: Valid uWaterloo Site Slug from /recourses/sites
+        - handler: The JSON handler for the JSON response.
+     */
     public func event(forID eventID: String, atSite site: String, handler: JSONHandler) {
         let path = "events/\(site)/\(eventID).json"
         self.get(at: path, using: handler)
     }
     
+    /**
+     [GET /events/holidays](https://github.com/uWaterloo/api-documentation/blob/master/v2/events/holidays.md)
+     
+     Returns a list of university holidays starting from 2012
+     
+     - parameter handler: The JSON handler for the JSON response.
+     */
     public func holidays(handler: JSONHandler) {
         let path = "events/holidays.json"
         self.get(at: path, using: handler)
@@ -418,18 +517,12 @@ public struct Events: WatBase {
     
 }
 
-// - MARK: Feds
-
 public struct Feds: WatBase {
     
     /**
-     `GET /feds/events.json`
+     [GET /feds/events](https://github.com/uWaterloo/api-documentation/blob/master/v2/feds/events.md)
      
      Returns a list of the upcoming events from the FEDS database
-     
-     - SeeAlso:
-     [/feds/events]
-     (https://github.com/uWaterloo/api-documentation/blob/master/v2/feds/events.md)
      
      - parameter handler: The JSON handler for the JSON response.
      */
@@ -439,13 +532,9 @@ public struct Feds: WatBase {
     }
     
     /**
-     `GET /feds/events/{id}.json`
+     [GET /feds/events/{id}](https://github.com/uWaterloo/api-documentation/blob/master/v2/feds/events_id.md)
      
      Returns a specific event's information given the unique id
-     
-     - SeeAlso:
-     [/feds/events]
-     (https://github.com/uWaterloo/api-documentation/blob/master/v2/feds/events_id.md)
      
      - parameters: 
         - id: Valid Event ID
@@ -457,13 +546,9 @@ public struct Feds: WatBase {
     }
     
     /**
-     `GET /feds/locations.json`
+     [GET /feds/locations](https://github.com/uWaterloo/api-documentation/blob/master/v2/feds/locations.md)
      
      Returns a list of all outlets and their operating hour data
-     
-     - SeeAlso:
-     [/feds/locations]
-     (https://github.com/uWaterloo/api-documentation/blob/master/v2/feds/locations.md)
      
      - parameter handler: The JSON handler for the JSON response.
      */
@@ -474,18 +559,12 @@ public struct Feds: WatBase {
     
 }
 
-
-// - MARK: Food Services
-
 public struct FoodServices: WatBase {
     
     /**
-     `GET /foodservices/{year}/{week}/menu.json`
+     [GET /foodservices/{year}/{week}/menu](https://github.com/uWaterloo/api-documentation/blob/master/v2/foodservices/year_week_menu.md)
      
      Returns the given week and year's food menu.
-     
-     - SeeAlso: [/foodservices/{year}/{week}/menu]
-     (https://github.com/uWaterloo/api-documentation/blob/master/v2/foodservices/year_week_menu.md)
      
      - parameters:
         - year: The year of the menu you're fetching
@@ -498,13 +577,9 @@ public struct FoodServices: WatBase {
     }
     
     /**
-     `GET /foodservices/menu.json`
+     [GET /foodservices/menu](https://github.com/uWaterloo/api-documentation/blob/master/v2/foodservices/menu.md).
      
      Returns the current week's food menu.
-     
-     - SeeAlso: 
-     [/foodservices/menu]
-     (https://github.com/uWaterloo/api-documentation/blob/master/v2/foodservices/menu.md).
      
      - parameter handler: The JSON handler for the JSON response.
      */
@@ -514,12 +589,9 @@ public struct FoodServices: WatBase {
     }
     
     /**
-     `GET /foodservices/{year}/{week}/notes.json`
+     [GET /foodservices/{year}/{week}/notes](https://github.com/uWaterloo/api-documentation/blob/master/v2/foodservices/year_week_notes.md)
      
      Returns additional notes regarding food served in the week specified
-     
-     - SeeAlso: [/foodservices/{year}/{week}/notes]
-     (https://github.com/uWaterloo/api-documentation/blob/master/v2/foodservices/year_week_notes.md)
      
      - parameters:
         - year: The year of the notes you're fetching
@@ -532,13 +604,9 @@ public struct FoodServices: WatBase {
     }
     
     /**
-     `GET /foodservices/notes.json`
+     [GET /foodservices/notes](https://github.com/uWaterloo/api-documentation/blob/master/v2/foodservices/notes.md)
      
      Returns additional notes regarding food served in the current week.
-     
-     - SeeAlso:
-     [/foodservices/menu]
-     (https://github.com/uWaterloo/api-documentation/blob/master/v2/foodservices/notes.md)
      
      - parameter handler: The JSON handler for the JSON response.
      */
@@ -549,13 +617,9 @@ public struct FoodServices: WatBase {
     
     
     /**
-     `GET /foodservices/diets.json`
+     [GET /foodservices/diets](https://github.com/uWaterloo/api-documentation/blob/master/v2/foodservices/diets.md)
      
      Returns a list of all diets
-     
-     - SeeAlso:
-     [/foodservices/diets]
-     (https://github.com/uWaterloo/api-documentation/blob/master/v2/foodservices/diets.md)
      
      - parameter handler: The JSON handler for the JSON response.
      */
@@ -565,13 +629,9 @@ public struct FoodServices: WatBase {
     }
     
     /**
-     `GET /foodservices/outlets.json`
+     [GET /foodservices/outlets](https://github.com/uWaterloo/api-documentation/blob/master/v2/foodservices/outlets.md)
      
       Returns a list of all outlets and their unique IDs, names and breakfast/lunch/dinner meal service indicators
-     
-     - SeeAlso:
-     [/foodservices/outlets]
-     (https://github.com/uWaterloo/api-documentation/blob/master/v2/foodservices/outlets.md)
      
      - parameter handler: The JSON handler for the JSON response.
      */
@@ -581,13 +641,9 @@ public struct FoodServices: WatBase {
     }
     
     /**
-     `GET /foodservices/locations.json`
+     [GET /foodservices/locations](https://github.com/uWaterloo/api-documentation/blob/master/v2/foodservices/locations.md)
      
      Returns a list of all outlets and their operating hour data
-     
-     - SeeAlso:
-     [/foodservices/locations]
-     (https://github.com/uWaterloo/api-documentation/blob/master/v2/foodservices/locations.md)
      
      - parameter handler: The JSON handler for the JSON response.
      */
@@ -597,13 +653,9 @@ public struct FoodServices: WatBase {
     }
     
     /**
-     `GET /foodservices/watcard.json`
+     [GET /foodservices/watcard](https://github.com/uWaterloo/api-documentation/blob/master/v2/foodservices/watcard.md)
      
      Returns a list of all WatCard locations according to Food Services
-     
-     - SeeAlso:
-     [/foodservices/watcard]
-     (https://github.com/uWaterloo/api-documentation/blob/master/v2/foodservices/watcard.md)
      
      - parameter handler: The JSON handler for the JSON response.
      */
@@ -613,12 +665,9 @@ public struct FoodServices: WatBase {
     }
     
     /**
-     `GET /foodservices/{year}/{week}/announcements.json`
+     [GET /foodservices/{year}/{week}/announcements](https://github.com/uWaterloo/api-documentation/blob/master/v2/foodservices/year_week_announcements.md)
      
      Returns additional announcements regarding food served in the week specified
-     
-     - SeeAlso: [/foodservices/{year}/{week}/announcements]
-     (https://github.com/uWaterloo/api-documentation/blob/master/v2/foodservices/year_week_menu.md)
      
      - parameters:
         - year: The year of the announcement you're fetching.
@@ -631,13 +680,9 @@ public struct FoodServices: WatBase {
     }
     
     /**
-     `GET /foodservices/announcements.json`
+     [GET /foodservices/announcements](https://github.com/uWaterloo/api-documentation/blob/master/v2/foodservices/announcements.md)
      
      Returns additional announcements regarding food served in the current week
-     
-     - SeeAlso:
-     [/foodservices/announcements]
-     (https://github.com/uWaterloo/api-documentation/blob/master/v2/foodservices/announcements.md)
      
      - parameter handler: The JSON handler for the JSON response.
      */
@@ -647,13 +692,9 @@ public struct FoodServices: WatBase {
     }
     
     /**
-     `GET /foodservices/products/{product_id}.json`
+     [GET /foodservices/products/{product_id}](https://github.com/uWaterloo/api-documentation/blob/master/v2/foodservices/products_product_id.md)
      
      Returns a product's nutritional information
-     
-     - SeeAlso:
-     [/foodservices/products/{product_id}]
-     (https://github.com/uWaterloo/api-documentation/blob/master/v2/foodservices/products_product_id.md)
      
      - parameter handler: The JSON handler for the JSON response.
      */
@@ -664,23 +705,45 @@ public struct FoodServices: WatBase {
     
 }
 
-// - MARK: News
-
 public struct News: WatBase {
     
-    /// This method returns a list of the freshest (most recently updated) 100 University of Waterloo news items as crawled from all University WCMS sites
+    /**
+     [GET /news](https://github.com/uWaterloo/api-documentation/blob/master/v2/news/news.md)
+     
+     Returns a list of the freshest (most recently updated) 100 University of Waterloo news items as crawled from all University WCMS sites
+     
+     - parameter handler: The JSON handler for the JSON response.
+     */
     public func allNews(handler: JSONHandler) {
         let path = "news.json"
         self.get(at: path, using: handler)
     }
     
-    /// This method returns a list of the upcoming site's news given a site slug
+    
+    /**
+     [GET /news/{site}](https://github.com/uWaterloo/api-documentation/blob/master/v2/news/news_site.md)
+     
+     Returns a list of the upcoming site's news given a site slug
+     
+     - parameters:
+        - site: a valid uWaterloo site slug
+        - handler: The JSON handler for the JSON response.
+     */
     public func news(on siteName: String, handler: JSONHandler) {
         let path = "news/\(siteName).json"
         self.get(at: path, using: handler)
     }
     
-    /// This method returns a specific news item's information given a site's slug and id
+    /**
+     [GET /news/{site}/{id}](https://github.com/uWaterloo/api-documentation/blob/master/v2/news/news_site_id.md)
+     
+     Returns a specific news item's information given a site's slug and id
+     
+     - parameters:
+        - newsID: a Valid news ID
+        - site: a valid uWaterloo site slug
+        - handler: The JSON handler for the JSON response.
+     */
     public func newsItem(forID newsID: String, onSite siteName: String, handler: JSONHandler) {
         let path = "news/\(siteName)/\(newsID).json"
         self.get(at: path, using: handler)
@@ -688,158 +751,299 @@ public struct News: WatBase {
     
 }
 
-
-// - MARK: Opportunities
-
 public struct Opportunities: WatBase {
     
-    /// This method returns a list of all opportunities available on campus
+    /**
+     [GET /opportunities](https://github.com/uWaterloo/api-documentation/blob/master/v2/opportunities/opportunities.md)
+     
+     Returns a list of all opportunities available on campus
+     
+     - parameter handler: The JSON handler for the JSON response.
+     */
     public func allOpportunities(handler: JSONHandler) {
         let path = "opportunities.json"
         self.get(at: path, using: handler)
     }
     
-    /// This method returns a list of all opportunities available on campus
-    public func opportunities(on siteName: String, handler: JSONHandler) {
-        let path = "opportunities/\(siteName).json"
+    /**
+     [GET /opportunities/{site}](https://github.com/uWaterloo/api-documentation/blob/master/v2/opportunities/opportunities_site.md)
+     
+     Returns a list of the upcoming site opportunities given a site slug
+     
+     - parameters:
+        - site: a valid uWaterloo site slug
+        - handler: The JSON handler for the JSON response.
+     */
+    public func opportunities(on site: String, handler: JSONHandler) {
+        let path = "opportunities/\(site).json"
         self.get(at: path, using: handler)
     }
     
-    /// This method returns a the job description for a given opportunity
-    public func jobDescription(forID jobID: String, onSite siteName: String, handler: JSONHandler) {
-        let path = "opportunities/\(siteName)/\(jobID).json"
+    /**
+     [GET /opportunities/{site}/{id}](https://github.com/uWaterloo/api-documentation/blob/master/v2/opportunities/opportunities_site_id.md)
+     
+     Returns the job description for a given opportunity
+     
+     - parameters:
+        - jobID: a Valid Job ID
+        - site: a valid uWaterloo site slug
+        - handler: The JSON handler for the JSON response.
+     */
+    public func jobDescription(forID jobID: String, fromSite site: String, handler: JSONHandler) {
+        let path = "opportunities/\(site)/\(jobID).json"
         self.get(at: path, using: handler)
     }
     
 }
 
-// - MARK: Parking
-
 public struct Parking: WatBase {
     
     public enum MeterType: String {
-        case meter
-        case permit
-        case visitor
-        case shortterm
-        case accessible
-        case motorcycle
         
-        var path: String {
-            return "parking/lots/\(self.rawValue).json"
-        }
+        /**
+         [GET /parking/lots/meter](https://github.com/uWaterloo/api-documentation/blob/master/v2/parking/meter.md)
+         
+         Returns list of metered parking lots across campus
+         */
+        case meter
+        
+        /**
+         [GET /parking/lots/permits](https://github.com/uWaterloo/api-documentation/blob/master/v2/parking/permits.md)
+         
+         Returns list of permit based parking lots across campus
+         */
+        case permit
+        
+        /**
+         [GET /parking/lots/visitor](https://github.com/uWaterloo/api-documentation/blob/master/v2/parking/visitor.md)
+         
+         Returns list of visitor parking lots across campus
+         */
+        case visitor
+        
+        /**
+         [GET /parking/lots/shortterm](https://github.com/uWaterloo/api-documentation/blob/master/v2/parking/shortterm.md)
+         
+         Returns list of short-term parking lots across campus
+         */
+        case shortterm
+        
+        /**
+         [GET /parking/lots/accessible](https://github.com/uWaterloo/api-documentation/blob/master/v2/parking/accessible.md)
+         
+         Returns list of accessible parking lots across campus
+         */
+        case accessible
+        
+        /**
+         [GET /parking/lots/motorcycle](https://github.com/uWaterloo/api-documentation/blob/master/v2/parking/motorcycle.md)
+         
+         Returns list of motorcycle parking lots across campus
+         */
+        case motorcycle
     }
     
+    /**
+     [GET /parking/watpark](https://github.com/uWaterloo/api-documentation/blob/master/v2/parking/watpark.md)
+     
+     Returns real-time parking counts in select parking lots across campus.
+     
+     - parameter handler: The JSON handler for the JSON response.
+     */
     public func watpark(handler: JSONHandler) {
         let path = "parking/watpark.json"
         self.get(at: path, using: handler)
     }
     
-    public func lots(type meterType: MeterType, handler: JSONHandler) {
-        let path = meterType.path
+    /**
+     Get parking lot information around the Waterloo Campus.
+     - parameters:
+        - type: The type of parking lot (`.meter`, `.permit`, etc)
+        - handler: The JSON handler for the JSON response.
+     */
+    public func lot(ofType meterType: MeterType, handler: JSONHandler) {
+        let path = "parking/lots/\(meterType.rawValue).json"
         self.get(at: path, using: handler)
     }
     
 }
-
-// - MARK: People Directory
 
 public struct Directory: WatBase {
     
-    public func user(forID userID: String, handler: JSONHandler) {
-        let path = "directory/\(userID).json"
+    /**
+     [GET /directory/{user_id}](https://github.com/uWaterloo/api-documentation/blob/master/v2/courses/courses.md)
+     
+     Returns user information for a given WatIAM ID
+     
+     - parameter handler: The JSON handler for the JSON response.
+     */
+    public func user(forID watiamID: String, handler: JSONHandler) {
+        let path = "directory/\(watiamID).json"
         self.get(at: path, using: handler)
     }
     
 }
-
-
-// - MARK: Points of Interest
 
 public struct PointsOfInterest: WatBase {
     
-    public func atms(handler: JSONHandler) {
-        let path = "poi/atms.json"
-        self.get(at: path, using: handler)
+    public enum PoiType: String {
+        /**
+         [GET /poi/atms](https://github.com/uWaterloo/api-documentation/blob/master/v2/poi/atms.md)
+         
+         Returns a list of ATMs across campus
+         */
+        case atms
+        
+        /**
+         [GET /poi/greyhound](https://github.com/uWaterloo/api-documentation/blob/master/v2/poi/greyhound.md)
+         
+         Returns list of Greyhound bus stops across city.
+         */
+        case greyhound
+        
+        /**
+         [GET /poi/helplines](https://github.com/uWaterloo/api-documentation/blob/master/v2/poi/helplines.md)
+         
+         Returns list of emergency helplines across campus.
+         */
+        case helplines
+        
+        
+        /**
+         [GET /poi/libraries](https://github.com/uWaterloo/api-documentation/blob/master/v2/poi/libraries.md)
+         
+         Returns list of libraries across city.
+         */
+        case libraries
+        
+        /**
+         [GET /poi/photospheres](https://github.com/uWaterloo/api-documentation/blob/master/v2/poi/greyhound.md)
+         
+         Returns list of photospheres across campus.
+         */
+        case photospheres
+        
+        /**
+         [GET /poi/defibrillators](https://github.com/uWaterloo/api-documentation/blob/master/v2/poi/defibrillators.md)
+         
+         Returns list of defibrillators across campus.
+         */
+        case defibrillators
+        
+        /**
+         [GET /poi/constructionsites](https://github.com/uWaterloo/api-documentation/blob/master/v2/poi/constructionsites.md)
+         
+         Returns list of construction sites across campus.
+         */
+        case constructionSites
+        
+        /**
+         [GET /poi/accessibleentrances](https://github.com/uWaterloo/api-documentation/blob/master/v2/poi/accessibleentrances.md)
+         
+         Returns list of accessible entrances across campus.
+         */
+        case accessibleEntrances
+        
+        /**
+         [GET /poi/visitorinformation](https://github.com/uWaterloo/api-documentation/blob/master/v2/poi/visitorinformation.md)
+         
+         Returns list of visitor information centres across campus.
+         */
+        case visitorInformation
+        
+        var path: String {
+            return self.rawValue.lowercased()
+        }
+        
     }
     
-    public func greyhound(handler: JSONHandler) {
-        let path = "poi/greyhound.json"
-        self.get(at: path, using: handler)
-    }
-    
-    public func helplines(handler: JSONHandler) {
-        let path = "poi/helplines.json"
-        self.get(at: path, using: handler)
-    }
-    
-    public func photospheres(handler: JSONHandler) {
-        let path = "poi/photospheres.json"
-        self.get(at: path, using: handler)
-    }
-    
-    public func defibrillators(handler: JSONHandler) {
-        let path = "poi/defibrillators.json"
-        self.get(at: path, using: handler)
-    }
-    
-    public func constructionSites(handler: JSONHandler) {
-        let path = "poi/constructionsites.json"
-        self.get(at: path, using: handler)
-    }
-    
-    public func accessibleEntraces(handler: JSONHandler) {
-        let path = "poi/accessibleEntraces.json"
-        self.get(at: path, using: handler)
-    }
-    
-    public func visitorInformation(handler: JSONHandler) {
-        let path = "poi/visitorinformation.json"
+    /**
+     Get the POI around the Waterloo Campus.
+     - parameters:
+        - type: The type of POI 
+        - handler: The JSON handler for the JSON response.
+     */
+    public func campusPoi(ofType type: PoiType, handler: JSONHandler) {
+        let path = "poi/\(type.path).json"
         self.get(at: path, using: handler)
     }
     
 }
-
-// - MARK: Resources
 
 public struct Resources: WatBase {
     
-    public func tutors(handler: JSONHandler) {
-        let path = "resources/tutors.json"
-        self.get(at: path, using: handler)
+    public enum ResourceType: String {
+        
+        /**
+         [GET /resources/tutors](https://github.com/uWaterloo/api-documentation/blob/master/v2/resources/tutors.md)
+         
+         Returns a list of all the tutors available to help for a course for a given term
+         */
+        case tutors
+        
+        /**
+         [GET /resources/printers](https://github.com/uWaterloo/api-documentation/blob/master/v2/resources/printers.md)
+         
+         Returns a list of printers on campus
+         */
+        case printers
+        
+        /**
+         [GET /resources/infosessions](https://github.com/uWaterloo/api-documentation/blob/master/v2/resources/infosessions.md)
+         
+         Returns a list of campus employer infosessions
+         */
+        case infosessions
+        
+        /**
+         [GET /resources/goosewatch](https://github.com/uWaterloo/api-documentation/blob/master/v2/resources/goosewatch.md)
+         
+         Returns a list of geese nests during their spring mating season
+         */
+        case goosewatch
+        
+        /**
+         [GET /resources/sunshinelist](https://github.com/uWaterloo/api-documentation/blob/master/v2/resources/sunshinelist.md)
+         
+         Returns a list of all UW employees that earn more than $100k/yr
+         */
+        case sunshinelist
+        
     }
     
-    public func printers(handler: JSONHandler) {
-        let path = "resources/printers.json"
-        self.get(at: path, using: handler)
-    }
-    
-    public func infoSessions(handler: JSONHandler) {
-        let path = "resources/infosessions.json"
-        self.get(at: path, using: handler)
-    }
-    
-    public func gooseWatch(handler: JSONHandler) {
-        let path = "resources/goosewatch.json"
-        self.get(at: path, using: handler)
-    }
-    
-    public func sunshineList(handler: JSONHandler) {
-        let path = "resources/sunshinelist.json"
+    /**
+     - parameters:
+        - type: The type of resource
+        - handler: The JSON handler for the JSON response.
+     */
+    public func resource(ofType type: ResourceType, handler: JSONHandler) {
+        let path = "resources/\(type.rawValue).json"
         self.get(at: path, using: handler)
     }
     
 }
 
-// - MARK: Server
-
 public struct Server: WatBase {
     
+    /**
+     [GET /server/time](https://github.com/uWaterloo/api-documentation/blob/master/v2/server/time.md)
+     
+     Returns time information about the server
+     
+     - parameter handler: The JSON handler for the JSON response.
+     */
     public func time(handler: JSONHandler) {
         let path = "server/time.json"
         self.get(at: path, using: handler)
     }
     
+    /**
+     [GET /server/codes](https://github.com/uWaterloo/api-documentation/blob/master/v2/server/codes.md)
+     
+     Returns a list of all possible API error codes
+     
+     - parameter handler: The JSON handler for the JSON response.
+     */
     public func codes(handler: JSONHandler) {
         let path = "server/codes.json"
         self.get(at: path, using: handler)
@@ -847,12 +1051,17 @@ public struct Server: WatBase {
     
 }
 
-
-// - MARK: Services
-
 public struct Services: WatBase {
     
-    /// This method returns a sites associated services.
+    /**
+     [GET /services/{site}](https://github.com/uWaterloo/api-documentation/blob/master/v2/services/services_site.md)
+     
+     Returns a sites associated services.
+     
+     - parameters:
+        - site: Valid uWaterloo site slug
+        - handler: The JSON handler for the JSON response.
+     */
     public func services(onSite siteName: String, handler: JSONHandler) {
         let path = "services/\(siteName).json"
         self.get(at: path, using: handler)
@@ -860,63 +1069,146 @@ public struct Services: WatBase {
     
 }
 
-// - MARK: Terms
-
 public struct Terms: WatBase {
     
+    /**
+     [GET /terms/list](https://github.com/uWaterloo/api-documentation/blob/master/v2/terms/list.md)
+     
+     Returns the current, previous and next term's id along with a list of terms in the past year and the next year.
+     
+     - parameter handler: The JSON handler for the JSON response.
+     */
     public func listAll(handler: JSONHandler) {
         let path = "terms/list.json"
         self.get(at: path, using: handler)
     }
     
+    /**
+     [GET /terms/{term}/courses](https://github.com/uWaterloo/api-documentation/blob/master/v2/terms/term_courses.md)
+     
+     Returns a list of all courses offered for the given term from the opendata database.
+     
+     - parameters:
+        - term: Valid uWaterloo term ID (4 digit representation)
+        - handler: The JSON handler for the JSON response.
+     */
     public func courses(for term: String, handler: JSONHandler) {
         let path = "terms/\(term)/courses.json"
         self.get(at: path, using: handler)
     }
     
+    /**
+     [GET /terms/{term}/examschedule](https://github.com/uWaterloo/api-documentation/blob/master/v2/terms/term_examschedule.md)
+     
+     Returns a given term's exam schedule
+     
+     - parameters:
+        - term: Valid uWaterloo term ID (4 digit representation)
+        - handler: The JSON handler for the JSON response.
+     */
     public func examSchedule(for term: String, handler: JSONHandler) {
         let path = "terms/\(term)/examschedule.json"
         self.get(at: path, using: handler)
     }
     
+    /**
+     [GET /terms/{term}/{subject}/schedule](https://github.com/uWaterloo/api-documentation/blob/master/v2/terms/term_subject_schedule.md)
+     
+     Returns all class schedule for the given subject for a given term.
+     
+     - parameters:
+        - subject: Valid uWaterloo subject name
+        - term: Valid uWaterloo term ID (4 digit representation)
+        - handler: The JSON handler for the JSON response.
+     */
     public func schedule(forSubject subject: String, inTerm term: String, handler: JSONHandler) {
         let path = "terms/\(term)/\(subject)/schedule.json"
         self.get(at: path, using: handler)
     }
     
-    public func schedule(catalogNumber: String, forSubject subject: String, inTerm term: String, handler: JSONHandler) {
+    /**
+     [GET /terms/{term}/{subject}/{catalog_number}/schedule](https://github.com/uWaterloo/api-documentation/blob/master/v2/terms/term_subject_catalog_number_schedule.md)
+     
+     Returns the class schedule for the given course of a given term.
+     
+     - parameters:
+        - catalogNumber: Course Name
+        - subject: Valid uWaterloo subject name
+        - term: Valid uWaterloo term ID (4 digit representation)
+        - handler: The JSON handler for the JSON response.
+     */
+    public func schedule(catalogNumber: String, subject: String, term: String, handler: JSONHandler) {
         let path = "terms/\(term)/\(subject)/\(catalogNumber)/schedule.json"
         self.get(at: path, using: handler)
     }
     
-    public func enrollment(for term: String, handler: JSONHandler) {
+    
+    /**
+     [GET /terms/{term}/enrollment](https://github.com/uWaterloo/api-documentation/blob/master/v2/terms/term_enrollment.md)
+     
+     Returns enrollment numbers for all classes in a term
+     
+     - parameters:
+        - term: Valid uWaterloo term ID (4 digit representation)
+        - handler: The JSON handler for the JSON response.
+     */
+    public func enrollment(forTerm term: String, handler: JSONHandler) {
         let path = "terms/\(term)/enrollment.json"
         self.get(at: path, using: handler)
     }
     
+    /**
+     [GET /terms/{term}/{subject}/enrollment](https://github.com/uWaterloo/api-documentation/blob/master/v2/terms/term_subject_enrollment.md)
+     
+     Returns enrollment numbers for all courses in a subject for a single term.
+     
+     - parameters:
+        - subject: Valid uWaterloo subject name
+        - term: Valid uWaterloo term ID (4 digit representation)
+        - handler: The JSON handler for the JSON response.
+     */
     public func enrollment(forSubject subject: String, inTerm term: String, handler: JSONHandler) {
         let path = "terms/\(term)/\(subject)/enrollment.json"
         self.get(at: path, using: handler)
     }
     
-    public func infosessions(for term: String, handler: JSONHandler) {
+    /**
+     [GET /terms/{term}/infosessions](https://github.com/uWaterloo/api-documentation/blob/master/v2/terms/term_infosessions.md)
+     
+     Returns the schedule for employer information sessions of a given term
+     
+     - parameters:
+        - term: Valid uWaterloo term ID (4 digit representation)
+        - handler: The JSON handler for the JSON response.
+     */
+    public func infoSessions(forTerm term: String, handler: JSONHandler) {
         let path = "terms/\(term)/infosessions.json"
         self.get(at: path, using: handler)
     }
     
 }
 
-// - MARK: Transit
-
 public struct Transit: WatBase {
     
-    /// This method returns list of transit agencies that GRT connects to
+    /**
+     [GET /transit/grt](https://github.com/uWaterloo/api-documentation/blob/master/v2/transit/grt.md)
+     
+     Returns list of transit agencies that GRT connects to.
+     
+     - parameter handler: The JSON handler for the JSON response.
+     */
     public func grtAgencies(handler: JSONHandler) {
         let path = "transit/grt.json"
         self.get(at: path, using: handler)
     }
     
-    /// This method returns list of all GRT bus stops
+    /**
+     [GET /transit/grt/stops](https://github.com/uWaterloo/api-documentation/blob/master/v2/transit/agency_stops.md)
+     
+     Returns list of all GRT bus stops.
+     
+     - parameter handler: The JSON handler for the JSON response.
+     */
     public func grtStops(handler: JSONHandler) {
         let path = "transit/grt/stops.json"
         self.get(at: path, using: handler)
@@ -924,16 +1216,18 @@ public struct Transit: WatBase {
     
 }
 
-
-// - MARK: Weather
-
 public struct Weather: WatBase {
     
-    /// This method returns the current weather details from the [University of Waterloo Weather Station.](http://weather.uwaterloo.ca)
+    /**
+     [GET /weather/current](https://github.com/uWaterloo/api-documentation/blob/master/v2/weather/current.md)
+     
+     Returns the current weather details from the [University of Waterloo Weather Station.](http://weather.uwaterloo.ca)
+     
+     - parameter handler: The JSON handler for the JSON response.
+     */
     public func current(handler: JSONHandler) {
         let path = "weather/current.json"
         self.get(at: path, using: handler)
     }
     
 }
-    
