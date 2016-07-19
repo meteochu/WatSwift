@@ -21,7 +21,14 @@ WatSwift.foodServices.menu { meta, data in
 }
 ```
 
-### JSON Handling
+If you wanted to get the atms around the campus:
+```swift
+WatSwift.poi.campusPoi(ofType: .atms) { meta, data in
+  // ...
+}
+```
+
+## JSON Handling
 
 To make accessing data returned by the OpenData API simple, WatSwift provides a JSON wrapper which allows the you to interact with similarly to a dictionary. Unlike a regular Dictionary, you do not need to lots of option chaining, allowing your code to be much cleaner and easier to read.
 
@@ -37,10 +44,10 @@ The JSON wrapper is courtesy of [mattdonnelly's Swifter: a Twitter Framework wri
 ### Obtaining an API Key
 You need a valid API key to access the uWaterloo OpenData API; you can get one [here](https://api.uwaterloo.ca).
 
-### Official API + Documentation
+## Official API + Documentation
 The Official API Documentation can be found [here](https://github.com/uWaterloo/api-documentation).
 
-### License
+## License
 WatSwift is licensed under the MIT License. See the LICENSE file for more information.
 
 Waterloo OpenData is licensed under [ODL (Open Data License) Agreement](https://uwaterloo.ca/open-data/university-waterloo-open-data-license-agreement-v1)
