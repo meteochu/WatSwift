@@ -40,61 +40,17 @@ public enum JSON : Equatable, CustomStringConvertible {
     case null
     case invalid
     
-    init(_ value: Bool?) {
-        guard let bool = value else {
-            self = .invalid
-            return
-        }
-        self = .bool(bool)
-    }
-    
-    init(_ value: Double?) {
-        guard let number = value else {
-            self = .invalid
-            return
-        }
-        self = .number(number)
-    }
-    
-    init(_ value: Int?) {
-        guard let number = value else {
-            self = .invalid
-            return
-        }
-        self = .number(Double(number))
-    }
-    
-    init(_ value: String?) {
-        guard let string = value else {
-            self = .invalid
-            return
-        }
-        self = .string(string)
-    }
-    
-    init(_ value: [JSON]?) {
-        guard let array = value else {
-            self = .invalid
-            return
-        }
-        self = .array(array)
-    }
-    
-    init(_ value: [String: JSON]?) {
-        guard let dict = value else {
-            self = .invalid
-            return
-        }
-        self = .object(dict)
-    }
-    
-    init(_ rawValue: Any?) {
-        guard let value = rawValue else {
-            self = .invalid
-            return
-        }
-        
-        switch value {
+    public init(_ rawValue: Any) {
+        switch rawValue {
+        case let json as JSON:
+            self = json
+            
+        case let array as [JSON]:
+            self = .array(array)
+            
+        case let dict as [String: JSON]:
+            self = .object(dict)
+            
         case let data as Data:
             do {
                 let object = try JSONSerialization.jsonObject(with: data, options: [])
@@ -120,7 +76,7 @@ public enum JSON : Equatable, CustomStringConvertible {
         case let number as NSNumber:
             self = number.isBoolean ? .bool(number.boolValue) : .number(number.doubleValue)
             
-        case _ as NSNull:
+        case _ as Optional<Any>:
             self = .null
             
         default:
@@ -277,7 +233,13 @@ public func ==(lhs: JSON, rhs: JSON) -> Bool {
     }
 }
 
-extension JSON: ExpressibleByStringLiteral {
+extension JSON: ExpressibleByStringLiteral,
+                ExpressibleByIntegerLiteral,
+                ExpressibleByBooleanLiteral,
+                ExpressibleByFloatLiteral,
+                ExpressibleByArrayLiteral,
+                ExpressibleByDictionaryLiteral,
+                ExpressibleByNilLiteral {
     
     public init(stringLiteral value: StringLiteralType) {
         self.init(value)
@@ -291,49 +253,26 @@ extension JSON: ExpressibleByStringLiteral {
         self.init(value)
     }
     
-}
-
-extension JSON: ExpressibleByIntegerLiteral {
-    
     public init(integerLiteral value: IntegerLiteralType) {
         self.init(value)
     }
-    
-}
-
-extension JSON: ExpressibleByBooleanLiteral {
     
     public init(booleanLiteral value: BooleanLiteralType) {
         self.init(value)
     }
     
-}
-
-extension JSON: ExpressibleByFloatLiteral {
-    
     public init(floatLiteral value: FloatLiteralType) {
         self.init(value)
     }
-    
-}
-
-extension JSON: ExpressibleByDictionaryLiteral {
     
     public init(dictionaryLiteral elements: (String, Any)...) {
         let object = elements.reduce([String: Any]()) { $0 + [$1.0: $1.1] }
         self.init(object)
     }
     
-}
-
-extension JSON: ExpressibleByArrayLiteral {
-    
     public init(arrayLiteral elements: AnyObject...) {
         self.init(elements)
     }
-}
-
-extension JSON: ExpressibleByNilLiteral {
     
     public init(nilLiteral: ()) {
         self.init(NSNull())
