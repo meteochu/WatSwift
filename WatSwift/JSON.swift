@@ -25,7 +25,8 @@
 
 import Foundation
 
-enum JSONError: ErrorProtocol {
+enum JSONError: Error {
+    
     case parseError(String)
 }
 
@@ -87,7 +88,7 @@ public enum JSON : Equatable, CustomStringConvertible {
         self = .object(dict)
     }
     
-    init(_ rawValue: AnyObject?) {
+    init(_ rawValue: Any?) {
         guard let value = rawValue else {
             self = .invalid
             return
@@ -102,11 +103,11 @@ public enum JSON : Equatable, CustomStringConvertible {
                 self = .invalid
             }
             
-        case let array as NSArray:
+        case let array as [Any]:
             let newArray = array.map { JSON($0) }
             self = .array(newArray)
             
-        case let dict as [String: AnyObject]:
+        case let dict as [String: Any]:
             var newDict = [String: JSON]()
             for (key, value) in dict {
                 newDict[key] = JSON(value)
@@ -117,11 +118,7 @@ public enum JSON : Equatable, CustomStringConvertible {
             self = .string(string)
             
         case let number as NSNumber:
-            if number.isBool {
-                self = .bool(number.boolValue)
-            } else {
-                self = .number(number.doubleValue)
-            }
+            self = number.isBoolean ? .bool(number.boolValue) : .number(number.doubleValue)
             
         case _ as NSNull:
             self = .null
@@ -217,35 +214,6 @@ public enum JSON : Equatable, CustomStringConvertible {
         return prettyPrint(indent, 0)
     }
     
-}
-
-public func ==(lhs: JSON, rhs: JSON) -> Bool {
-    switch (lhs, rhs) {
-    case (.null, .null):
-        return true
-        
-    case (.bool(let lhsValue), .bool(let rhsValue)):
-        return lhsValue == rhsValue
-        
-    case (.string(let lhsValue), .string(let rhsValue)):
-        return lhsValue == rhsValue
-        
-    case (.number(let lhsValue), .number(let rhsValue)):
-        return lhsValue == rhsValue
-        
-    case (.array(let lhsValue), .array(let rhsValue)):
-        return lhsValue == rhsValue
-        
-    case (.object(let lhsValue), .object(let rhsValue)):
-        return lhsValue == rhsValue
-        
-    default:
-        return false
-    }
-}
-
-extension JSON {
-    
     public var description: String {
         guard let string = stringify() else {
             return "<INVALID JSON>"
@@ -284,22 +252,32 @@ extension JSON {
     
 }
 
-extension JSON: Boolean {
-    
-    public var boolValue: Bool {
-        switch self {
-        case .bool(let bool):
-            return bool
-        case .invalid:
-            return false
-        default:
-            return true
-        }
+public func ==(lhs: JSON, rhs: JSON) -> Bool {
+    switch (lhs, rhs) {
+    case (.null, .null):
+        return true
+        
+    case (.bool(let lhsValue), .bool(let rhsValue)):
+        return lhsValue == rhsValue
+        
+    case (.string(let lhsValue), .string(let rhsValue)):
+        return lhsValue == rhsValue
+        
+    case (.number(let lhsValue), .number(let rhsValue)):
+        return lhsValue == rhsValue
+        
+    case (.array(let lhsValue), .array(let rhsValue)):
+        return lhsValue == rhsValue
+        
+    case (.object(let lhsValue), .object(let rhsValue)):
+        return lhsValue == rhsValue
+        
+    default:
+        return false
     }
-    
 }
 
-extension JSON: StringLiteralConvertible {
+extension JSON: ExpressibleByStringLiteral {
     
     public init(stringLiteral value: StringLiteralType) {
         self.init(value)
@@ -315,7 +293,7 @@ extension JSON: StringLiteralConvertible {
     
 }
 
-extension JSON: IntegerLiteralConvertible {
+extension JSON: ExpressibleByIntegerLiteral {
     
     public init(integerLiteral value: IntegerLiteralType) {
         self.init(value)
@@ -323,7 +301,7 @@ extension JSON: IntegerLiteralConvertible {
     
 }
 
-extension JSON: BooleanLiteralConvertible {
+extension JSON: ExpressibleByBooleanLiteral {
     
     public init(booleanLiteral value: BooleanLiteralType) {
         self.init(value)
@@ -331,7 +309,7 @@ extension JSON: BooleanLiteralConvertible {
     
 }
 
-extension JSON: FloatLiteralConvertible {
+extension JSON: ExpressibleByFloatLiteral {
     
     public init(floatLiteral value: FloatLiteralType) {
         self.init(value)
@@ -339,28 +317,23 @@ extension JSON: FloatLiteralConvertible {
     
 }
 
-extension JSON: DictionaryLiteralConvertible {
+extension JSON: ExpressibleByDictionaryLiteral {
     
-    public init(dictionaryLiteral elements: (String, AnyObject)...) {
-        var dict = [String : AnyObject]()
-        
-        for (key, value) in elements {
-            dict[key] = value
-        }
-        
-        self.init(dict)
+    public init(dictionaryLiteral elements: (String, Any)...) {
+        let object = elements.reduce([String: Any]()) { $0 + [$1.0: $1.1] }
+        self.init(object)
     }
     
 }
 
-extension JSON: ArrayLiteralConvertible {
+extension JSON: ExpressibleByArrayLiteral {
     
     public init(arrayLiteral elements: AnyObject...) {
         self.init(elements)
     }
 }
 
-extension JSON: NilLiteralConvertible {
+extension JSON: ExpressibleByNilLiteral {
     
     public init(nilLiteral: ()) {
         self.init(NSNull())
@@ -368,20 +341,17 @@ extension JSON: NilLiteralConvertible {
     
 }
 
-private let trueNumber = NSNumber(value: true)
-private let falseNumber = NSNumber(value: false)
-private let trueObjCType = String(cString: trueNumber.objCType)
-private let falseObjCType = String(cString: falseNumber.objCType)
+private func +(lhs: [String: Any], rhs: [String: Any]) -> [String: Any] {
+    var lhs = lhs
+    for element in rhs {
+        lhs[element.key] = element.value
+    }
+    return lhs
+}
 
 private extension NSNumber {
-    var isBool:Bool {
-        get {
-            let objCType = String(cString: self.objCType)
-            if (self.compare(trueNumber) == .orderedSame &&  objCType == trueObjCType) ||  (self.compare(falseNumber) == .orderedSame && objCType == falseObjCType){
-                return true
-            } else {
-                return false
-            }
-        }
+    
+    var isBoolean: Bool {
+        return NSNumber(value: true).objCType == self.objCType
     }
 }

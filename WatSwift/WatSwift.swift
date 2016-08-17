@@ -29,8 +29,8 @@ internal extension URL {
     static let api: URL = URL(string: "https://api.uwaterloo.ca/v2/")!
 }
 
-public typealias JSONHandler = (meta: JSON, data: JSON) -> Void
-public typealias FailureHandler = (error: NSError) -> Void
+public typealias JSONHandler = (_ meta: JSON, _ data: JSON) -> Void
+public typealias FailureHandler = (NSError) -> Void
 
 /**
  *  Before you use WatSwift, you must set the `apiKey` property.
@@ -77,7 +77,7 @@ extension WatBase {
         let dataTask = session.dataTask(with: url) { data, response, error in
             guard let data = data else { return }
             let json = JSON(data)
-            handler(meta: json["meta"], data: json["data"])
+            handler(json["meta"], json["data"])
         }
         dataTask.resume()
     }
