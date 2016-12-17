@@ -25,12 +25,12 @@
 
 import Foundation
 
-internal extension URL {
+public typealias JSONHandler = (_ meta: JSON, _ data: JSON) -> Void
+public typealias FailureHandler = (Error) -> Void
+
+private extension URL {
     static let api: URL = URL(string: "https://api.uwaterloo.ca/v2/")!
 }
-
-public typealias JSONHandler = (_ meta: JSON, _ data: JSON) -> Void
-public typealias FailureHandler = (NSError) -> Void
 
 /**
  *  Before you use WatSwift, you must set the `apiKey` property.
