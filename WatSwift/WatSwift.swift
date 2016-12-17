@@ -40,27 +40,6 @@ public struct WatSwift {
     /// Your `apiKey` is required. If you do not have one, you can obtain one on [Waterloo's API Website](https://api.uwaterloo.ca)
     public static var apiKey: String = ""
     
-    public static let foodServices: FoodServices = FoodServices()
-    public static let feds: Feds = Feds()
-    public static let courses: Courses = Courses()
-    public static let awards: Awards = Awards()
-    public static let events: Events = Events()
-    public static let blogs: Blogs = Blogs()
-    public static let news: News = News()
-    public static let opportunities: Opportunities = Opportunities()
-    public static let services: Services = Services()
-    public static let weather: Weather = Weather()
-    public static let terms: Terms = Terms()
-    public static let resources: Resources = Resources()
-    public static let codes: Codes = Codes()
-    public static let buildings: Buildings = Buildings()
-    public static let poi: PointsOfInterest = PointsOfInterest()
-    public static let parking: Parking = Parking()
-    public static let transit: Transit = Transit()
-    public static let directory: Directory = Directory()
-    public static let api: API = API()
-    public static let server: Server = Server()
-    
 }
 
 // MARK: WatBase
