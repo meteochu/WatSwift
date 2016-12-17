@@ -45,12 +45,12 @@ public struct WatSwift {
 // MARK: WatBase
 
 protocol WatBase {
-    func get(at path: String, using handler: JSONHandler)
+    func get(at path: String, using handler: @escaping JSONHandler)
 }
 
 extension WatBase {
     
-    internal func get(at path: String, using handler: JSONHandler) {
+    internal func get(at path: String, using handler: @escaping JSONHandler) {
         let url = URL(string: "\(path)?key=\(WatSwift.apiKey)", relativeTo: .api)!
         let session = URLSession(configuration: .default, delegate: nil, delegateQueue: .main)
         let dataTask = session.dataTask(with: url) { data, response, error in
@@ -73,7 +73,7 @@ public struct API: WatBase {
      
      - parameter handler: The JSON handler for the JSON response.
      */
-    public func usage(handler: JSONHandler) {
+    public func usage(handler: @escaping JSONHandler) {
         let path = "api/usage.json"
         self.get(at: path, using: handler)
     }
@@ -86,7 +86,7 @@ public struct API: WatBase {
      
      - parameter handler: The JSON handler for the JSON response.
      */
-    public func services(handler: JSONHandler) {
+    public func services(handler: @escaping JSONHandler) {
         let path = "api/services.json"
         self.get(at: path, using: handler)
     }
@@ -99,7 +99,7 @@ public struct API: WatBase {
      
      - parameter handler: The JSON handler for the JSON response.
      */
-    public func methods(handler: JSONHandler) {
+    public func methods(handler: @escaping JSONHandler) {
         let path = "api/methods.json"
         self.get(at: path, using: handler)
     }
@@ -111,7 +111,7 @@ public struct API: WatBase {
      
      - parameter handler: The JSON handler for the JSON response.
      */
-    public func versions(handler: JSONHandler) {
+    public func versions(handler: @escaping JSONHandler) {
         let path = "api/versions.json"
         self.get(at: path, using: handler)
     }
@@ -123,7 +123,7 @@ public struct API: WatBase {
      
      - parameter handler: The JSON handler for the JSON response.
      */
-    public func changelog(handler: JSONHandler) {
+    public func changelog(handler: @escaping JSONHandler) {
         let path = "api/changelog.json"
         self.get(at: path, using: handler)
     }
@@ -139,7 +139,7 @@ public struct Awards: WatBase {
      
      - parameter handler: The JSON handler for the JSON response.
      */
-    public func graduate(handler: JSONHandler) {
+    public func graduate(handler: @escaping JSONHandler) {
         let path = "awards/graduate.json"
         self.get(at: path, using: handler)
     }
@@ -151,7 +151,7 @@ public struct Awards: WatBase {
      
      - parameter handler: The JSON handler for the JSON response.
      */
-    public func undergraduate(handler: JSONHandler) {
+    public func undergraduate(handler: @escaping JSONHandler) {
         let path = "awards/undergraduate.json"
         self.get(at: path, using: handler)
     }
@@ -169,7 +169,7 @@ public struct Blogs: WatBase {
         - site: Valid Site ID
         - handler: The JSON handler for the JSON response.
      */
-    public func blogPosts(forSite site: String, handler: JSONHandler) {
+    public func blogPosts(forSite site: String, handler: @escaping JSONHandler) {
         let path = "blogs/\(site).json"
         self.get(at: path, using: handler)
     }
@@ -184,7 +184,7 @@ public struct Blogs: WatBase {
         - site: Valid Site ID
         - handler: The JSON handler for the JSON response.
      */
-    public func blogPost(forID postID: String, onSite site: String, handler: JSONHandler) {
+    public func blogPost(forID postID: String, onSite site: String, handler: @escaping JSONHandler) {
         let path = "blogs/\(site)/\(postID).json"
         self.get(at: path, using: handler)
     }
@@ -200,7 +200,7 @@ public struct Buildings: WatBase {
      
      - parameter handler: The JSON handler for the JSON response.
      */
-    public func listAll(handler: JSONHandler) {
+    public func listAll(handler: @escaping JSONHandler) {
         let path = "buildings/list.json"
         self.get(at: path, using: handler)
     }
@@ -214,7 +214,7 @@ public struct Buildings: WatBase {
         - code: Valid uWaterloo building code.
         - handler: The JSON handler for the JSON response.
      */
-    public func building(forCode code: String, handler: JSONHandler) {
+    public func building(forCode code: String, handler: @escaping JSONHandler) {
         let path = "buildings/\(code).json"
         self.get(at: path, using: handler)
     }
@@ -229,7 +229,7 @@ public struct Buildings: WatBase {
         - building: Valid uWaterloo building code.
         - handler: The JSON handler for the JSON response.
      */
-    public func courses(forRoom room: String, inBuilding building: String, handler: JSONHandler) {
+    public func courses(forRoom room: String, inBuilding building: String, handler: @escaping JSONHandler) {
         let path = "buildings/\(building)/\(room)/courses.json"
         self.get(at: path, using: handler)
     }
@@ -243,7 +243,7 @@ public struct Buildings: WatBase {
         - building: Valid uWaterloo building code.
         - handler: The JSON handler for the JSON response.
      */
-    public func accesspoints(in building: String, handler: JSONHandler) {
+    public func accesspoints(in building: String, handler: @escaping JSONHandler) {
         let path = "buildings/\(building)/accesspoints.json"
         self.get(at: path, using: handler)
     }
@@ -257,7 +257,7 @@ public struct Buildings: WatBase {
         - building: Valid uWaterloo building code.
         - handler: The JSON handler for the JSON response.
      */
-    public func vendingMachines(in building: String, handler: JSONHandler) {
+    public func vendingMachines(in building: String, handler: @escaping JSONHandler) {
         let path = "buildings/\(building)/vendingmachines.json"
         self.get(at: path, using: handler)
     }
@@ -311,7 +311,7 @@ public struct Codes: WatBase {
         - type: The type of code to lookup (`.units`, `.terms`, etc)
         - handler: The JSON handler for the JSON response.
      */
-    public func lookup(type: CodeType, handler: JSONHandler) {
+    public func lookup(type: CodeType, handler: @escaping JSONHandler) {
         let path = "codes/\(type.rawValue).json"
         self.get(at: path, using: handler)
     }
@@ -328,7 +328,7 @@ public struct Courses: WatBase {
      - note: This endpoint returns over 6000 courses!
      - parameter handler: The JSON handler for the JSON response.
      */
-    public func allCourses(handler: JSONHandler) {
+    public func allCourses(handler: @escaping JSONHandler) {
         let path = "courses.json"
         self.get(at: path, using: handler)
     }
@@ -342,7 +342,7 @@ public struct Courses: WatBase {
         - subject: Valid uWaterloo Subject name
         - handler: The JSON handler for the JSON response.
      */
-    public func courses(forSubject subject: String, handler: JSONHandler) {
+    public func courses(forSubject subject: String, handler: @escaping JSONHandler) {
         let path = "courses/\(subject).json"
         self.get(at: path, using: handler)
     }
@@ -357,7 +357,7 @@ public struct Courses: WatBase {
         - courseID: Valid uWaterloo Course ID
         - handler: The JSON handler for the JSON response.
      */
-    public func courseInformation(forID courseID: String, handler: JSONHandler) {
+    public func courseInformation(forID courseID: String, handler: @escaping JSONHandler) {
         let path = "courses/\(courseID).json"
         self.get(at: path, using: handler)
     }
@@ -371,7 +371,7 @@ public struct Courses: WatBase {
         - classNumber: Valid uWaterloo Course Class Number
         - handler: The JSON handler for the JSON response.
      */
-    public func schedule(forClass classNumber: String, handler: JSONHandler) {
+    public func schedule(forClass classNumber: String, handler: @escaping JSONHandler) {
         let path = "courses/\(classNumber)/schedule.json"
         self.get(at: path, using: handler)
     }
@@ -386,7 +386,7 @@ public struct Courses: WatBase {
         - catalogNumber: Valid uWaterloo Catalog Number
         - handler: The JSON handler for the JSON response.
      */
-    public func courseInformation(subject: String, catalogNumber: String, handler: JSONHandler) {
+    public func courseInformation(subject: String, catalogNumber: String, handler: @escaping JSONHandler) {
         let path = "courses/\(subject)/\(catalogNumber).json"
         self.get(at: path, using: handler)
     }
@@ -401,7 +401,7 @@ public struct Courses: WatBase {
         - catalogNumber: Valid uWaterloo Catalog Number
         - handler: The JSON handler for the JSON response.
      */
-    public func schedule(subject: String, catalogNumber: String, handler: JSONHandler) {
+    public func schedule(subject: String, catalogNumber: String, handler: @escaping JSONHandler) {
         let path = "courses/\(subject)/\(catalogNumber)/schedule.json"
         self.get(at: path, using: handler)
     }
@@ -416,7 +416,7 @@ public struct Courses: WatBase {
         - catalogNumber: Valid uWaterloo Catalog Number
         - handler: The JSON handler for the JSON response.
      */
-    public func prerequisites(subject: String, catalogNumber: String, handler: JSONHandler) {
+    public func prerequisites(subject: String, catalogNumber: String, handler: @escaping JSONHandler) {
         let path = "courses/\(subject)/\(catalogNumber)/prerequisites.json"
         self.get(at: path, using: handler)
     }
@@ -431,7 +431,7 @@ public struct Courses: WatBase {
         - catalogNumber: Valid uWaterloo Catalog Number
         - handler: The JSON handler for the JSON response.
      */
-    public func examSchedule(subject: String, catalogNumber: String, handler: JSONHandler) {
+    public func examSchedule(subject: String, catalogNumber: String, handler: @escaping JSONHandler) {
         let path = "courses/\(subject)/\(catalogNumber)/examschedule.json"
         self.get(at: path, using: handler)
     }
@@ -448,7 +448,7 @@ public struct Events: WatBase {
      
      - parameter handler: The JSON handler for the JSON response.
      */
-    public func allEvents(handler: JSONHandler) {
+    public func allEvents(handler: @escaping JSONHandler) {
         let path = "events.json"
         self.get(at: path, using: handler)
     }
@@ -462,7 +462,7 @@ public struct Events: WatBase {
         - siteName: Valid uWaterloo Site Slug from /resources/sites
         - handler: The JSON handler for the JSON response.
      */
-    public func events(forSite siteName: String, handler: JSONHandler) {
+    public func events(forSite siteName: String, handler: @escaping JSONHandler) {
         let path = "events/\(siteName).json"
         self.get(at: path, using: handler)
     }
@@ -477,7 +477,7 @@ public struct Events: WatBase {
         - site: Valid uWaterloo Site Slug from /recourses/sites
         - handler: The JSON handler for the JSON response.
      */
-    public func event(forID eventID: String, atSite site: String, handler: JSONHandler) {
+    public func event(forID eventID: String, atSite site: String, handler: @escaping JSONHandler) {
         let path = "events/\(site)/\(eventID).json"
         self.get(at: path, using: handler)
     }
@@ -489,7 +489,7 @@ public struct Events: WatBase {
      
      - parameter handler: The JSON handler for the JSON response.
      */
-    public func holidays(handler: JSONHandler) {
+    public func holidays(handler: @escaping JSONHandler) {
         let path = "events/holidays.json"
         self.get(at: path, using: handler)
     }
@@ -505,7 +505,7 @@ public struct Feds: WatBase {
      
      - parameter handler: The JSON handler for the JSON response.
      */
-    public func events(handler: JSONHandler) {
+    public func events(handler: @escaping JSONHandler) {
         let path = "feds/events.json"
         self.get(at: path, using: handler)
     }
@@ -519,7 +519,7 @@ public struct Feds: WatBase {
         - id: Valid Event ID
         - handler: The JSON handler for the JSON response.
      */
-    public func events(for id: String, handler: JSONHandler) {
+    public func events(for id: String, handler: @escaping JSONHandler) {
         let path = "feds/events/\(id).json"
         self.get(at: path, using: handler)
     }
@@ -531,7 +531,7 @@ public struct Feds: WatBase {
      
      - parameter handler: The JSON handler for the JSON response.
      */
-    public func locations(handler: JSONHandler) {
+    public func locations(handler: @escaping JSONHandler) {
         let path = "feds/locations.json"
         self.get(at: path, using: handler)
     }
@@ -550,7 +550,7 @@ public struct FoodServices: WatBase {
         - week: The week of the menu you're fetching
         - handler: The JSON handler for the JSON response.
      */
-    public func menu(year: Int, week: Int, handler: JSONHandler) {
+    public func menu(year: Int, week: Int, handler: @escaping JSONHandler) {
         let path = "foodservices/\(year)/\(week)/menu.json"
         self.get(at: path, using: handler)
     }
@@ -562,7 +562,7 @@ public struct FoodServices: WatBase {
      
      - parameter handler: The JSON handler for the JSON response.
      */
-    public func menu(handler: JSONHandler) {
+    public func menu(handler: @escaping JSONHandler) {
         let path = "foodservices/menu.json"
         self.get(at: path, using: handler)
     }
@@ -577,7 +577,7 @@ public struct FoodServices: WatBase {
         - week: The week of the notes you're fetching
         - handler: The JSON handler for the JSON response.
      */
-    public func notes(year: Int, week: Int, handler: JSONHandler) {
+    public func notes(year: Int, week: Int, handler: @escaping JSONHandler) {
         let path = "foodservices/\(year)/\(week)/notes.json"
         self.get(at: path, using: handler)
     }
@@ -589,7 +589,7 @@ public struct FoodServices: WatBase {
      
      - parameter handler: The JSON handler for the JSON response.
      */
-    public func notes(handler: JSONHandler) {
+    public func notes(handler: @escaping JSONHandler) {
         let path = "foodservices/notes.json"
         self.get(at: path, using: handler)
     }
@@ -602,7 +602,7 @@ public struct FoodServices: WatBase {
      
      - parameter handler: The JSON handler for the JSON response.
      */
-    public func diets(handler: JSONHandler) {
+    public func diets(handler: @escaping JSONHandler) {
         let path = "foodservices/diets.json"
         self.get(at: path, using: handler)
     }
@@ -614,7 +614,7 @@ public struct FoodServices: WatBase {
      
      - parameter handler: The JSON handler for the JSON response.
      */
-    public func outlets(handler: JSONHandler) {
+    public func outlets(handler: @escaping JSONHandler) {
         let path = "foodservices/outlets.json"
         self.get(at: path, using: handler)
     }
@@ -626,7 +626,7 @@ public struct FoodServices: WatBase {
      
      - parameter handler: The JSON handler for the JSON response.
      */
-    public func locations(handler: JSONHandler) {
+    public func locations(handler: @escaping JSONHandler) {
         let path = "foodservices/locations.json"
         self.get(at: path, using: handler)
     }
@@ -638,7 +638,7 @@ public struct FoodServices: WatBase {
      
      - parameter handler: The JSON handler for the JSON response.
      */
-    public func watcard(handler: JSONHandler) {
+    public func watcard(handler: @escaping JSONHandler) {
         let path = "foodservices/watcard.json"
         self.get(at: path, using: handler)
     }
@@ -653,7 +653,7 @@ public struct FoodServices: WatBase {
         - week: The week of the announcement you're fetching.
         - handler: The JSON handler for the JSON response.
      */
-    public func announcements(year: Int, week: Int, handler: JSONHandler) {
+    public func announcements(year: Int, week: Int, handler: @escaping JSONHandler) {
         let path = "foodservices/\(year)/\(week)/announcements.json"
         self.get(at: path, using: handler)
     }
@@ -665,7 +665,7 @@ public struct FoodServices: WatBase {
      
      - parameter handler: The JSON handler for the JSON response.
      */
-    public func announcements(handler: JSONHandler) {
+    public func announcements(handler: @escaping JSONHandler) {
         let path = "foodservices/announcements.json"
         self.get(at: path, using: handler)
     }
@@ -677,7 +677,7 @@ public struct FoodServices: WatBase {
      
      - parameter handler: The JSON handler for the JSON response.
      */
-    public func product(for id: String, handler: JSONHandler) {
+    public func product(for id: String, handler: @escaping JSONHandler) {
         let path = "foodservices/products/\(id).json"
         self.get(at: path, using: handler)
     }
@@ -693,7 +693,7 @@ public struct News: WatBase {
      
      - parameter handler: The JSON handler for the JSON response.
      */
-    public func allNews(handler: JSONHandler) {
+    public func allNews(handler: @escaping JSONHandler) {
         let path = "news.json"
         self.get(at: path, using: handler)
     }
@@ -708,7 +708,7 @@ public struct News: WatBase {
         - site: a valid uWaterloo site slug
         - handler: The JSON handler for the JSON response.
      */
-    public func news(on siteName: String, handler: JSONHandler) {
+    public func news(on siteName: String, handler: @escaping JSONHandler) {
         let path = "news/\(siteName).json"
         self.get(at: path, using: handler)
     }
@@ -723,7 +723,7 @@ public struct News: WatBase {
         - site: a valid uWaterloo site slug
         - handler: The JSON handler for the JSON response.
      */
-    public func newsItem(forID newsID: String, onSite siteName: String, handler: JSONHandler) {
+    public func newsItem(forID newsID: String, onSite siteName: String, handler: @escaping JSONHandler) {
         let path = "news/\(siteName)/\(newsID).json"
         self.get(at: path, using: handler)
     }
@@ -739,7 +739,7 @@ public struct Opportunities: WatBase {
      
      - parameter handler: The JSON handler for the JSON response.
      */
-    public func allOpportunities(handler: JSONHandler) {
+    public func allOpportunities(handler: @escaping JSONHandler) {
         let path = "opportunities.json"
         self.get(at: path, using: handler)
     }
@@ -753,7 +753,7 @@ public struct Opportunities: WatBase {
         - site: a valid uWaterloo site slug
         - handler: The JSON handler for the JSON response.
      */
-    public func opportunities(on site: String, handler: JSONHandler) {
+    public func opportunities(on site: String, handler: @escaping JSONHandler) {
         let path = "opportunities/\(site).json"
         self.get(at: path, using: handler)
     }
@@ -768,7 +768,7 @@ public struct Opportunities: WatBase {
         - site: a valid uWaterloo site slug
         - handler: The JSON handler for the JSON response.
      */
-    public func jobDescription(forID jobID: String, fromSite site: String, handler: JSONHandler) {
+    public func jobDescription(forID jobID: String, fromSite site: String, handler: @escaping JSONHandler) {
         let path = "opportunities/\(site)/\(jobID).json"
         self.get(at: path, using: handler)
     }
@@ -829,7 +829,7 @@ public struct Parking: WatBase {
      
      - parameter handler: The JSON handler for the JSON response.
      */
-    public func watpark(handler: JSONHandler) {
+    public func watpark(handler: @escaping JSONHandler) {
         let path = "parking/watpark.json"
         self.get(at: path, using: handler)
     }
@@ -840,7 +840,7 @@ public struct Parking: WatBase {
         - type: The type of parking lot (`.meter`, `.permit`, etc)
         - handler: The JSON handler for the JSON response.
      */
-    public func lot(ofType meterType: MeterType, handler: JSONHandler) {
+    public func lot(ofType meterType: MeterType, handler: @escaping JSONHandler) {
         let path = "parking/lots/\(meterType.rawValue).json"
         self.get(at: path, using: handler)
     }
@@ -856,7 +856,7 @@ public struct Directory: WatBase {
      
      - parameter handler: The JSON handler for the JSON response.
      */
-    public func user(forID watiamID: String, handler: JSONHandler) {
+    public func user(forID watiamID: String, handler: @escaping JSONHandler) {
         let path = "directory/\(watiamID).json"
         self.get(at: path, using: handler)
     }
@@ -942,7 +942,7 @@ public struct PointsOfInterest: WatBase {
         - type: The type of POI 
         - handler: The JSON handler for the JSON response.
      */
-    public func campusPoi(ofType type: PoiType, handler: JSONHandler) {
+    public func campusPoi(ofType type: PoiType, handler: @escaping JSONHandler) {
         let path = "poi/\(type.path).json"
         self.get(at: path, using: handler)
     }
@@ -995,7 +995,7 @@ public struct Resources: WatBase {
         - type: The type of resource
         - handler: The JSON handler for the JSON response.
      */
-    public func resource(ofType type: ResourceType, handler: JSONHandler) {
+    public func resource(ofType type: ResourceType, handler: @escaping JSONHandler) {
         let path = "resources/\(type.rawValue).json"
         self.get(at: path, using: handler)
     }
@@ -1011,7 +1011,7 @@ public struct Server: WatBase {
      
      - parameter handler: The JSON handler for the JSON response.
      */
-    public func time(handler: JSONHandler) {
+    public func time(handler: @escaping JSONHandler) {
         let path = "server/time.json"
         self.get(at: path, using: handler)
     }
@@ -1023,7 +1023,7 @@ public struct Server: WatBase {
      
      - parameter handler: The JSON handler for the JSON response.
      */
-    public func codes(handler: JSONHandler) {
+    public func codes(handler: @escaping JSONHandler) {
         let path = "server/codes.json"
         self.get(at: path, using: handler)
     }
@@ -1041,7 +1041,7 @@ public struct Services: WatBase {
         - site: Valid uWaterloo site slug
         - handler: The JSON handler for the JSON response.
      */
-    public func services(onSite siteName: String, handler: JSONHandler) {
+    public func services(onSite siteName: String, handler: @escaping JSONHandler) {
         let path = "services/\(siteName).json"
         self.get(at: path, using: handler)
     }
@@ -1057,7 +1057,7 @@ public struct Terms: WatBase {
      
      - parameter handler: The JSON handler for the JSON response.
      */
-    public func listAll(handler: JSONHandler) {
+    public func listAll(handler: @escaping JSONHandler) {
         let path = "terms/list.json"
         self.get(at: path, using: handler)
     }
@@ -1071,7 +1071,7 @@ public struct Terms: WatBase {
         - term: Valid uWaterloo term ID (4 digit representation)
         - handler: The JSON handler for the JSON response.
      */
-    public func courses(for term: String, handler: JSONHandler) {
+    public func courses(for term: String, handler: @escaping JSONHandler) {
         let path = "terms/\(term)/courses.json"
         self.get(at: path, using: handler)
     }
@@ -1085,7 +1085,7 @@ public struct Terms: WatBase {
         - term: Valid uWaterloo term ID (4 digit representation)
         - handler: The JSON handler for the JSON response.
      */
-    public func examSchedule(for term: String, handler: JSONHandler) {
+    public func examSchedule(for term: String, handler: @escaping JSONHandler) {
         let path = "terms/\(term)/examschedule.json"
         self.get(at: path, using: handler)
     }
@@ -1100,7 +1100,7 @@ public struct Terms: WatBase {
         - term: Valid uWaterloo term ID (4 digit representation)
         - handler: The JSON handler for the JSON response.
      */
-    public func schedule(forSubject subject: String, inTerm term: String, handler: JSONHandler) {
+    public func schedule(forSubject subject: String, inTerm term: String, handler: @escaping JSONHandler) {
         let path = "terms/\(term)/\(subject)/schedule.json"
         self.get(at: path, using: handler)
     }
@@ -1116,7 +1116,7 @@ public struct Terms: WatBase {
         - term: Valid uWaterloo term ID (4 digit representation)
         - handler: The JSON handler for the JSON response.
      */
-    public func schedule(catalogNumber: String, subject: String, term: String, handler: JSONHandler) {
+    public func schedule(catalogNumber: String, subject: String, term: String, handler: @escaping JSONHandler) {
         let path = "terms/\(term)/\(subject)/\(catalogNumber)/schedule.json"
         self.get(at: path, using: handler)
     }
@@ -1131,7 +1131,7 @@ public struct Terms: WatBase {
         - term: Valid uWaterloo term ID (4 digit representation)
         - handler: The JSON handler for the JSON response.
      */
-    public func enrollment(forTerm term: String, handler: JSONHandler) {
+    public func enrollment(forTerm term: String, handler: @escaping JSONHandler) {
         let path = "terms/\(term)/enrollment.json"
         self.get(at: path, using: handler)
     }
@@ -1146,7 +1146,7 @@ public struct Terms: WatBase {
         - term: Valid uWaterloo term ID (4 digit representation)
         - handler: The JSON handler for the JSON response.
      */
-    public func enrollment(forSubject subject: String, inTerm term: String, handler: JSONHandler) {
+    public func enrollment(forSubject subject: String, inTerm term: String, handler: @escaping JSONHandler) {
         let path = "terms/\(term)/\(subject)/enrollment.json"
         self.get(at: path, using: handler)
     }
@@ -1160,7 +1160,7 @@ public struct Terms: WatBase {
         - term: Valid uWaterloo term ID (4 digit representation)
         - handler: The JSON handler for the JSON response.
      */
-    public func infoSessions(forTerm term: String, handler: JSONHandler) {
+    public func infoSessions(forTerm term: String, handler: @escaping JSONHandler) {
         let path = "terms/\(term)/infosessions.json"
         self.get(at: path, using: handler)
     }
@@ -1176,7 +1176,7 @@ public struct Transit: WatBase {
      
      - parameter handler: The JSON handler for the JSON response.
      */
-    public func grtAgencies(handler: JSONHandler) {
+    public func grtAgencies(handler: @escaping JSONHandler) {
         let path = "transit/grt.json"
         self.get(at: path, using: handler)
     }
@@ -1188,7 +1188,7 @@ public struct Transit: WatBase {
      
      - parameter handler: The JSON handler for the JSON response.
      */
-    public func grtStops(handler: JSONHandler) {
+    public func grtStops(handler: @escaping JSONHandler) {
         let path = "transit/grt/stops.json"
         self.get(at: path, using: handler)
     }
@@ -1204,7 +1204,7 @@ public struct Weather: WatBase {
      
      - parameter handler: The JSON handler for the JSON response.
      */
-    public func current(handler: JSONHandler) {
+    public func current(handler: @escaping JSONHandler) {
         let path = "weather/current.json"
         self.get(at: path, using: handler)
     }
