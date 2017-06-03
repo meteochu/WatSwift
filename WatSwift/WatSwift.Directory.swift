@@ -11,7 +11,7 @@ import Foundation
 public extension WatSwift.Directory {
     
     /**
-     [GET /directory/{user_id}](https://github.com/uWaterloo/api-documentation/blob/master/v2/courses/courses.md)
+     [GET /directory/{user_id}](https://github.com/uWaterloo/api-documentation/blob/master/v2/directory/search.md)
      
      Returns user information for a given WatIAM ID
      
