@@ -7,6 +7,50 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		A121E15A1EE2A26F004E0191 /* Response.swift in Sources */ = {isa = PBXBuildFile; fileRef = A121E1591EE2A26F004E0191 /* Response.swift */; };
+		A121E15E1EE2A316004E0191 /* WatBase.swift in Sources */ = {isa = PBXBuildFile; fileRef = A121E15D1EE2A316004E0191 /* WatBase.swift */; };
+		A121E15F1EE2A38C004E0191 /* WatBase.swift in Sources */ = {isa = PBXBuildFile; fileRef = A121E15D1EE2A316004E0191 /* WatBase.swift */; };
+		A121E1601EE2A390004E0191 /* Response.swift in Sources */ = {isa = PBXBuildFile; fileRef = A121E1591EE2A26F004E0191 /* Response.swift */; };
+		A121E1631EE2A3E9004E0191 /* WatSwift.API.swift in Sources */ = {isa = PBXBuildFile; fileRef = A121E1621EE2A3E9004E0191 /* WatSwift.API.swift */; };
+		A121E1641EE2A3E9004E0191 /* WatSwift.API.swift in Sources */ = {isa = PBXBuildFile; fileRef = A121E1621EE2A3E9004E0191 /* WatSwift.API.swift */; };
+		A121E1661EE2A4D5004E0191 /* WatSwift.Awards.swift in Sources */ = {isa = PBXBuildFile; fileRef = A121E1651EE2A4D5004E0191 /* WatSwift.Awards.swift */; };
+		A121E1671EE2A4D5004E0191 /* WatSwift.Awards.swift in Sources */ = {isa = PBXBuildFile; fileRef = A121E1651EE2A4D5004E0191 /* WatSwift.Awards.swift */; };
+		A121E1691EE2A534004E0191 /* WatSwift.Blogs.swift in Sources */ = {isa = PBXBuildFile; fileRef = A121E1681EE2A534004E0191 /* WatSwift.Blogs.swift */; };
+		A121E16A1EE2A534004E0191 /* WatSwift.Blogs.swift in Sources */ = {isa = PBXBuildFile; fileRef = A121E1681EE2A534004E0191 /* WatSwift.Blogs.swift */; };
+		A121E16C1EE2A5BB004E0191 /* WatSwift.Buildings.swift in Sources */ = {isa = PBXBuildFile; fileRef = A121E16B1EE2A5BB004E0191 /* WatSwift.Buildings.swift */; };
+		A121E16D1EE2A5BB004E0191 /* WatSwift.Buildings.swift in Sources */ = {isa = PBXBuildFile; fileRef = A121E16B1EE2A5BB004E0191 /* WatSwift.Buildings.swift */; };
+		A121E16F1EE2A646004E0191 /* WatSwift.Codes.swift in Sources */ = {isa = PBXBuildFile; fileRef = A121E16E1EE2A646004E0191 /* WatSwift.Codes.swift */; };
+		A121E1701EE2A646004E0191 /* WatSwift.Codes.swift in Sources */ = {isa = PBXBuildFile; fileRef = A121E16E1EE2A646004E0191 /* WatSwift.Codes.swift */; };
+		A121E1721EE2A696004E0191 /* WatSwift.Courses.swift in Sources */ = {isa = PBXBuildFile; fileRef = A121E1711EE2A696004E0191 /* WatSwift.Courses.swift */; };
+		A121E1731EE2A696004E0191 /* WatSwift.Courses.swift in Sources */ = {isa = PBXBuildFile; fileRef = A121E1711EE2A696004E0191 /* WatSwift.Courses.swift */; };
+		A121E1751EE2A6B1004E0191 /* WatSwift.Events.swift in Sources */ = {isa = PBXBuildFile; fileRef = A121E1741EE2A6B1004E0191 /* WatSwift.Events.swift */; };
+		A121E1761EE2A6B1004E0191 /* WatSwift.Events.swift in Sources */ = {isa = PBXBuildFile; fileRef = A121E1741EE2A6B1004E0191 /* WatSwift.Events.swift */; };
+		A121E1781EE2A711004E0191 /* WatSwift.Feds.swift in Sources */ = {isa = PBXBuildFile; fileRef = A121E1771EE2A711004E0191 /* WatSwift.Feds.swift */; };
+		A121E1791EE2A711004E0191 /* WatSwift.Feds.swift in Sources */ = {isa = PBXBuildFile; fileRef = A121E1771EE2A711004E0191 /* WatSwift.Feds.swift */; };
+		A121E17B1EE2A72C004E0191 /* WatSwift.FoodServices.swift in Sources */ = {isa = PBXBuildFile; fileRef = A121E17A1EE2A72C004E0191 /* WatSwift.FoodServices.swift */; };
+		A121E17C1EE2A72C004E0191 /* WatSwift.FoodServices.swift in Sources */ = {isa = PBXBuildFile; fileRef = A121E17A1EE2A72C004E0191 /* WatSwift.FoodServices.swift */; };
+		A121E17E1EE2A792004E0191 /* WatSwift.Opportunities.swift in Sources */ = {isa = PBXBuildFile; fileRef = A121E17D1EE2A792004E0191 /* WatSwift.Opportunities.swift */; };
+		A121E17F1EE2A792004E0191 /* WatSwift.Opportunities.swift in Sources */ = {isa = PBXBuildFile; fileRef = A121E17D1EE2A792004E0191 /* WatSwift.Opportunities.swift */; };
+		A121E1811EE2A79C004E0191 /* WatSwift.News.swift in Sources */ = {isa = PBXBuildFile; fileRef = A121E1801EE2A79C004E0191 /* WatSwift.News.swift */; };
+		A121E1821EE2A79C004E0191 /* WatSwift.News.swift in Sources */ = {isa = PBXBuildFile; fileRef = A121E1801EE2A79C004E0191 /* WatSwift.News.swift */; };
+		A121E1841EE2A7E7004E0191 /* WatSwift.Parking.swift in Sources */ = {isa = PBXBuildFile; fileRef = A121E1831EE2A7E7004E0191 /* WatSwift.Parking.swift */; };
+		A121E1851EE2A7E7004E0191 /* WatSwift.Parking.swift in Sources */ = {isa = PBXBuildFile; fileRef = A121E1831EE2A7E7004E0191 /* WatSwift.Parking.swift */; };
+		A121E1871EE2A8B9004E0191 /* WatSwift.Directory.swift in Sources */ = {isa = PBXBuildFile; fileRef = A121E1861EE2A8B9004E0191 /* WatSwift.Directory.swift */; };
+		A121E1881EE2A8B9004E0191 /* WatSwift.Directory.swift in Sources */ = {isa = PBXBuildFile; fileRef = A121E1861EE2A8B9004E0191 /* WatSwift.Directory.swift */; };
+		A121E18A1EE2A8D7004E0191 /* WatSwift.PointsOfInterest.swift in Sources */ = {isa = PBXBuildFile; fileRef = A121E1891EE2A8D7004E0191 /* WatSwift.PointsOfInterest.swift */; };
+		A121E18B1EE2A8D7004E0191 /* WatSwift.PointsOfInterest.swift in Sources */ = {isa = PBXBuildFile; fileRef = A121E1891EE2A8D7004E0191 /* WatSwift.PointsOfInterest.swift */; };
+		A121E18D1EE2A905004E0191 /* WatSwift.Resources.swift in Sources */ = {isa = PBXBuildFile; fileRef = A121E18C1EE2A905004E0191 /* WatSwift.Resources.swift */; };
+		A121E18E1EE2A905004E0191 /* WatSwift.Resources.swift in Sources */ = {isa = PBXBuildFile; fileRef = A121E18C1EE2A905004E0191 /* WatSwift.Resources.swift */; };
+		A121E1901EE2A941004E0191 /* WatSwift.Server.swift in Sources */ = {isa = PBXBuildFile; fileRef = A121E18F1EE2A941004E0191 /* WatSwift.Server.swift */; };
+		A121E1911EE2A941004E0191 /* WatSwift.Server.swift in Sources */ = {isa = PBXBuildFile; fileRef = A121E18F1EE2A941004E0191 /* WatSwift.Server.swift */; };
+		A121E1931EE2A96B004E0191 /* WatSwift.Services.swift in Sources */ = {isa = PBXBuildFile; fileRef = A121E1921EE2A96B004E0191 /* WatSwift.Services.swift */; };
+		A121E1941EE2A96B004E0191 /* WatSwift.Services.swift in Sources */ = {isa = PBXBuildFile; fileRef = A121E1921EE2A96B004E0191 /* WatSwift.Services.swift */; };
+		A121E1961EE2A986004E0191 /* WatSwift.Terms.swift in Sources */ = {isa = PBXBuildFile; fileRef = A121E1951EE2A986004E0191 /* WatSwift.Terms.swift */; };
+		A121E1971EE2A986004E0191 /* WatSwift.Terms.swift in Sources */ = {isa = PBXBuildFile; fileRef = A121E1951EE2A986004E0191 /* WatSwift.Terms.swift */; };
+		A121E1991EE2A9BF004E0191 /* WatSwift.Weather.swift in Sources */ = {isa = PBXBuildFile; fileRef = A121E1981EE2A9BF004E0191 /* WatSwift.Weather.swift */; };
+		A121E19A1EE2A9BF004E0191 /* WatSwift.Weather.swift in Sources */ = {isa = PBXBuildFile; fileRef = A121E1981EE2A9BF004E0191 /* WatSwift.Weather.swift */; };
+		A121E19C1EE2A9CD004E0191 /* WatSwift.Transit.swift in Sources */ = {isa = PBXBuildFile; fileRef = A121E19B1EE2A9CD004E0191 /* WatSwift.Transit.swift */; };
+		A121E19D1EE2A9CD004E0191 /* WatSwift.Transit.swift in Sources */ = {isa = PBXBuildFile; fileRef = A121E19B1EE2A9CD004E0191 /* WatSwift.Transit.swift */; };
 		A1C857F51D3CDE7100CA77C7 /* WatSwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A1C857EB1D3CDE7100CA77C7 /* WatSwift.framework */; };
 		A1C857FA1D3CDE7100CA77C7 /* WatSwiftTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1C857F91D3CDE7100CA77C7 /* WatSwiftTests.swift */; };
 		A1C857FC1D3CDE7100CA77C7 /* WatSwift.h in Headers */ = {isa = PBXBuildFile; fileRef = A1C857EE1D3CDE7100CA77C7 /* WatSwift.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -27,6 +71,28 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		A121E1591EE2A26F004E0191 /* Response.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Response.swift; sourceTree = "<group>"; };
+		A121E15D1EE2A316004E0191 /* WatBase.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WatBase.swift; sourceTree = "<group>"; };
+		A121E1621EE2A3E9004E0191 /* WatSwift.API.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WatSwift.API.swift; sourceTree = "<group>"; };
+		A121E1651EE2A4D5004E0191 /* WatSwift.Awards.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WatSwift.Awards.swift; sourceTree = "<group>"; };
+		A121E1681EE2A534004E0191 /* WatSwift.Blogs.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WatSwift.Blogs.swift; sourceTree = "<group>"; };
+		A121E16B1EE2A5BB004E0191 /* WatSwift.Buildings.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WatSwift.Buildings.swift; sourceTree = "<group>"; };
+		A121E16E1EE2A646004E0191 /* WatSwift.Codes.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WatSwift.Codes.swift; sourceTree = "<group>"; };
+		A121E1711EE2A696004E0191 /* WatSwift.Courses.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WatSwift.Courses.swift; sourceTree = "<group>"; };
+		A121E1741EE2A6B1004E0191 /* WatSwift.Events.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WatSwift.Events.swift; sourceTree = "<group>"; };
+		A121E1771EE2A711004E0191 /* WatSwift.Feds.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WatSwift.Feds.swift; sourceTree = "<group>"; };
+		A121E17A1EE2A72C004E0191 /* WatSwift.FoodServices.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WatSwift.FoodServices.swift; sourceTree = "<group>"; };
+		A121E17D1EE2A792004E0191 /* WatSwift.Opportunities.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WatSwift.Opportunities.swift; sourceTree = "<group>"; };
+		A121E1801EE2A79C004E0191 /* WatSwift.News.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WatSwift.News.swift; sourceTree = "<group>"; };
+		A121E1831EE2A7E7004E0191 /* WatSwift.Parking.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WatSwift.Parking.swift; sourceTree = "<group>"; };
+		A121E1861EE2A8B9004E0191 /* WatSwift.Directory.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WatSwift.Directory.swift; sourceTree = "<group>"; };
+		A121E1891EE2A8D7004E0191 /* WatSwift.PointsOfInterest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WatSwift.PointsOfInterest.swift; sourceTree = "<group>"; };
+		A121E18C1EE2A905004E0191 /* WatSwift.Resources.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WatSwift.Resources.swift; sourceTree = "<group>"; };
+		A121E18F1EE2A941004E0191 /* WatSwift.Server.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WatSwift.Server.swift; sourceTree = "<group>"; };
+		A121E1921EE2A96B004E0191 /* WatSwift.Services.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WatSwift.Services.swift; sourceTree = "<group>"; };
+		A121E1951EE2A986004E0191 /* WatSwift.Terms.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WatSwift.Terms.swift; sourceTree = "<group>"; };
+		A121E1981EE2A9BF004E0191 /* WatSwift.Weather.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WatSwift.Weather.swift; sourceTree = "<group>"; };
+		A121E19B1EE2A9CD004E0191 /* WatSwift.Transit.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WatSwift.Transit.swift; sourceTree = "<group>"; };
 		A1C857EB1D3CDE7100CA77C7 /* WatSwift.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = WatSwift.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		A1C857EE1D3CDE7100CA77C7 /* WatSwift.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WatSwift.h; sourceTree = "<group>"; };
 		A1C857EF1D3CDE7100CA77C7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -56,6 +122,42 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		A121E19F1EE2AAB5004E0191 /* APIs */ = {
+			isa = PBXGroup;
+			children = (
+				A121E1621EE2A3E9004E0191 /* WatSwift.API.swift */,
+				A121E1651EE2A4D5004E0191 /* WatSwift.Awards.swift */,
+				A121E1681EE2A534004E0191 /* WatSwift.Blogs.swift */,
+				A121E16B1EE2A5BB004E0191 /* WatSwift.Buildings.swift */,
+				A121E16E1EE2A646004E0191 /* WatSwift.Codes.swift */,
+				A121E1711EE2A696004E0191 /* WatSwift.Courses.swift */,
+				A121E1861EE2A8B9004E0191 /* WatSwift.Directory.swift */,
+				A121E1741EE2A6B1004E0191 /* WatSwift.Events.swift */,
+				A121E1771EE2A711004E0191 /* WatSwift.Feds.swift */,
+				A121E17A1EE2A72C004E0191 /* WatSwift.FoodServices.swift */,
+				A121E1801EE2A79C004E0191 /* WatSwift.News.swift */,
+				A121E17D1EE2A792004E0191 /* WatSwift.Opportunities.swift */,
+				A121E1831EE2A7E7004E0191 /* WatSwift.Parking.swift */,
+				A121E1891EE2A8D7004E0191 /* WatSwift.PointsOfInterest.swift */,
+				A121E18C1EE2A905004E0191 /* WatSwift.Resources.swift */,
+				A121E18F1EE2A941004E0191 /* WatSwift.Server.swift */,
+				A121E1921EE2A96B004E0191 /* WatSwift.Services.swift */,
+				A121E1951EE2A986004E0191 /* WatSwift.Terms.swift */,
+				A121E19B1EE2A9CD004E0191 /* WatSwift.Transit.swift */,
+				A121E1981EE2A9BF004E0191 /* WatSwift.Weather.swift */,
+			);
+			name = APIs;
+			sourceTree = "<group>";
+		};
+		A169F7F31EE2ADF500BF66E1 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				A1C857EF1D3CDE7100CA77C7 /* Info.plist */,
+				A1C857EE1D3CDE7100CA77C7 /* WatSwift.h */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
 		A1C857E11D3CDE7100CA77C7 = {
 			isa = PBXGroup;
 			children = (
@@ -78,9 +180,11 @@
 			isa = PBXGroup;
 			children = (
 				A1C858071D3CDE8200CA77C7 /* WatSwift.swift */,
+				A121E15D1EE2A316004E0191 /* WatBase.swift */,
+				A121E19F1EE2AAB5004E0191 /* APIs */,
+				A121E1591EE2A26F004E0191 /* Response.swift */,
 				A1C858091D3CE19D00CA77C7 /* JSON.swift */,
-				A1C857EF1D3CDE7100CA77C7 /* Info.plist */,
-				A1C857EE1D3CDE7100CA77C7 /* WatSwift.h */,
+				A169F7F31EE2ADF500BF66E1 /* Supporting Files */,
 			);
 			path = WatSwift;
 			sourceTree = "<group>";
@@ -209,8 +313,30 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A121E15A1EE2A26F004E0191 /* Response.swift in Sources */,
+				A121E1901EE2A941004E0191 /* WatSwift.Server.swift in Sources */,
+				A121E1721EE2A696004E0191 /* WatSwift.Courses.swift in Sources */,
+				A121E1961EE2A986004E0191 /* WatSwift.Terms.swift in Sources */,
+				A121E1841EE2A7E7004E0191 /* WatSwift.Parking.swift in Sources */,
+				A121E1811EE2A79C004E0191 /* WatSwift.News.swift in Sources */,
+				A121E18A1EE2A8D7004E0191 /* WatSwift.PointsOfInterest.swift in Sources */,
+				A121E18D1EE2A905004E0191 /* WatSwift.Resources.swift in Sources */,
+				A121E1991EE2A9BF004E0191 /* WatSwift.Weather.swift in Sources */,
+				A121E1931EE2A96B004E0191 /* WatSwift.Services.swift in Sources */,
 				A1C858081D3CDE8200CA77C7 /* WatSwift.swift in Sources */,
+				A121E1871EE2A8B9004E0191 /* WatSwift.Directory.swift in Sources */,
+				A121E1691EE2A534004E0191 /* WatSwift.Blogs.swift in Sources */,
+				A121E1751EE2A6B1004E0191 /* WatSwift.Events.swift in Sources */,
+				A121E19C1EE2A9CD004E0191 /* WatSwift.Transit.swift in Sources */,
 				A1C8580A1D3CE19D00CA77C7 /* JSON.swift in Sources */,
+				A121E16F1EE2A646004E0191 /* WatSwift.Codes.swift in Sources */,
+				A121E1631EE2A3E9004E0191 /* WatSwift.API.swift in Sources */,
+				A121E17E1EE2A792004E0191 /* WatSwift.Opportunities.swift in Sources */,
+				A121E1661EE2A4D5004E0191 /* WatSwift.Awards.swift in Sources */,
+				A121E15E1EE2A316004E0191 /* WatBase.swift in Sources */,
+				A121E1781EE2A711004E0191 /* WatSwift.Feds.swift in Sources */,
+				A121E16C1EE2A5BB004E0191 /* WatSwift.Buildings.swift in Sources */,
+				A121E17B1EE2A72C004E0191 /* WatSwift.FoodServices.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -218,9 +344,31 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A121E1881EE2A8B9004E0191 /* WatSwift.Directory.swift in Sources */,
+				A121E1761EE2A6B1004E0191 /* WatSwift.Events.swift in Sources */,
+				A121E1911EE2A941004E0191 /* WatSwift.Server.swift in Sources */,
+				A121E17C1EE2A72C004E0191 /* WatSwift.FoodServices.swift in Sources */,
+				A121E1851EE2A7E7004E0191 /* WatSwift.Parking.swift in Sources */,
 				A1C8581A1D3D11B700CA77C7 /* JSON.swift in Sources */,
+				A121E17F1EE2A792004E0191 /* WatSwift.Opportunities.swift in Sources */,
+				A121E1821EE2A79C004E0191 /* WatSwift.News.swift in Sources */,
 				A1C858151D3D11B700CA77C7 /* WatSwift.swift in Sources */,
+				A121E19A1EE2A9BF004E0191 /* WatSwift.Weather.swift in Sources */,
+				A121E1941EE2A96B004E0191 /* WatSwift.Services.swift in Sources */,
 				A1C857FA1D3CDE7100CA77C7 /* WatSwiftTests.swift in Sources */,
+				A121E18B1EE2A8D7004E0191 /* WatSwift.PointsOfInterest.swift in Sources */,
+				A121E15F1EE2A38C004E0191 /* WatBase.swift in Sources */,
+				A121E1791EE2A711004E0191 /* WatSwift.Feds.swift in Sources */,
+				A121E1601EE2A390004E0191 /* Response.swift in Sources */,
+				A121E1701EE2A646004E0191 /* WatSwift.Codes.swift in Sources */,
+				A121E16D1EE2A5BB004E0191 /* WatSwift.Buildings.swift in Sources */,
+				A121E1971EE2A986004E0191 /* WatSwift.Terms.swift in Sources */,
+				A121E16A1EE2A534004E0191 /* WatSwift.Blogs.swift in Sources */,
+				A121E1731EE2A696004E0191 /* WatSwift.Courses.swift in Sources */,
+				A121E18E1EE2A905004E0191 /* WatSwift.Resources.swift in Sources */,
+				A121E19D1EE2A9CD004E0191 /* WatSwift.Transit.swift in Sources */,
+				A121E1671EE2A4D5004E0191 /* WatSwift.Awards.swift in Sources */,
+				A121E1641EE2A3E9004E0191 /* WatSwift.API.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

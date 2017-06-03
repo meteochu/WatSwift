@@ -60,8 +60,7 @@ public enum JSON : Equatable, CustomStringConvertible {
             }
             
         case let array as [Any]:
-            let newArray = array.map { JSON($0) }
-            self = .array(newArray)
+            self = .array(array.map { JSON($0) })
             
         case let dict as [String: Any]:
             var newDict = [String: JSON]()
@@ -80,83 +79,83 @@ public enum JSON : Equatable, CustomStringConvertible {
             self = .null
             
         default:
-            assert(true, "This location should never be reached")
+            assert(false, "This location should never be reached")
             self = .invalid
         }
         
     }
     
     public var string : String? {
-        guard case .string(let value) = self else {
-            return nil
+        if case .string(let string) = self {
+            return string
         }
-        return value
+        return nil
     }
     
     public var integer : Int? {
-        guard case .number(let value) = self else {
-            return nil
+        if case .number(let num) = self {
+            return Int(num)
         }
-        return Int(value)
+        return nil
     }
     
     public var double : Double? {
-        guard case .number(let value) = self else {
-            return nil
+        if case .number(let num) = self {
+            return num
         }
-        return value
+        return nil
     }
     
     public var object : [String: JSON]? {
-        guard case .object(let value) = self else {
-            return nil
+        if case .object(let dict) = self {
+            return dict
         }
-        return value
+        return nil
     }
     
     public var array : [JSON]? {
-        guard case .array(let value) = self else {
-            return nil
+        if case .array(let array) = self {
+            return array
         }
-        return value
+        return nil
     }
     
     public var bool : Bool? {
-        guard case .bool(let value) = self else {
-            return nil
+        if case .bool(let bool) = self {
+            return bool
         }
-        return value
+        return nil
     }
     
     public subscript(key: String) -> JSON {
-        guard case .object(let dict) = self, let value = dict[key] else {
-            return .invalid
+        if case .object(let dict) = self, let value = dict[key] {
+            return value
         }
-        return value
+        return .invalid
     }
     
     public subscript(index: Int) -> JSON {
-        guard case .array(let array) = self, array.count > index else {
-            return .invalid
+        if case .array(let array) = self, array.count > index {
+            return array[index]
         }
-        return array[index]
+        return .invalid
     }
     
-    static func parse(jsonData: Data) throws -> JSON {
+    static func parse(_ data: Data) throws -> JSON {
         do {
-            let object = try JSONSerialization.jsonObject(with: jsonData, options: .mutableContainers)
+            let object = try JSONSerialization.jsonObject(with: data, options: .mutableContainers)
             return JSON(object)
         } catch {
             throw JSONError.parseError("\(error)")
         }
     }
     
-    static func parse(string : String) throws -> JSON {
+    static func parse(_ string: String) throws -> JSON {
         do {
             guard let data = string.data(using: .utf8, allowLossyConversion: false) else {
                 throw JSONError.parseError("Cannot parse invalid string")
             }
-            return try parse(jsonData: data)
+            return try parse(data)
         } catch {
             throw JSONError.parseError("\(error)")
         }
@@ -184,24 +183,22 @@ public enum JSON : Equatable, CustomStringConvertible {
         switch self {
         case .bool(let bool):
             return bool ? "true" : "false"
-            
         case .number(let number):
             return "\(number)"
-            
         case .string(let string):
             return "\"\(string)\""
-            
         case .array(let array):
-            return "[\n" + array.map { "\(nextIndent)\($0.prettyPrint(indent, level + 1))" }.joined(separator: ",\n") + "\n\(currentIndent)]"
-            
+            return "[\n" + array
+                .map { "\(nextIndent)\($0.prettyPrint(indent, level + 1))" }
+                .joined(separator: ",\n") + "\n\(currentIndent)]"
         case .object(let dict):
-            return "{\n" + dict.map { "\(nextIndent)\"\($0)\" : \($1.prettyPrint(indent, level + 1))"}.joined(separator: ",\n") + "\n\(currentIndent)}"
-            
+            return "{\n" + dict
+                .map { "\(nextIndent)\"\($0)\" : \($1.prettyPrint(indent, level + 1))"}
+                .joined(separator: ",\n") + "\n\(currentIndent)}"
         case .null:
             return "null"
-            
         case .invalid:
-            assert(true, "This should never be reached")
+            assert(false, "This should never be reached")
             return ""
         }
     }

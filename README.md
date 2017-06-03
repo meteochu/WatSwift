@@ -4,7 +4,7 @@ Waterloo OpenData Client in Swift. WatSwift supports all OpenData endpoints, and
 ## Getting Started
 
 ### Installation
-WatSwift can be installed by simply dragging the WatSwift Xcode Project (`.xcodeproj`) into your own project, and adding the `WatSwift` framework as an embedded framework. Alternatively, you can install by adding the 2 WatSwift files (`WatSwift.swift`, and `JSON.swift`) into your project.
+WatSwift can be installed by simply dragging the WatSwift Xcode Project (`.xcodeproj`) into your own project, and adding the `WatSwift` framework as an embedded framework.
 
 ### Usage
 
@@ -15,15 +15,18 @@ WatSwift.apiKey = "------YOUR API KEY--------"
 
 The rest is fairly self explanatory. Each endpoint is categorized by their own struct in `WatSwift`. For example, if you wanted to access the current week's menu:
 ```swift
-FoodServices.menu { meta, data in
-  // meta: all metadata returned from the API
-  // data: data returned from the API, both in JSON format.
+WatSwift.FoodServices.menu { response in
+  // metadata returned by the API, wrapped in a Metadata struct
+  let metadata = response.metadata
+  // Data returned by the API in JSON format.
+  let data: JSON = response.data
+  // ...
 }
 ```
 
 If you wanted to get the atms around the campus:
 ```swift
-PointsOfInterest.campusPoi(ofType: .atms) { meta, data in
+WatSwift.PointsOfInterest.campusPoi(ofType: .atms) { response in
   // ...
 }
 ```
@@ -34,7 +37,7 @@ To make accessing data returned by the OpenData API simple, WatSwift provides a 
 
 Here's an example of how you would access the name of the first food service outlet:
 ```swift
-if let outletName = data["outlets"][0]["outlet_name"].string {
+if let outletName = response.data["outlets"][0]["outlet_name"].string {
   // outletName
 }
 ```
@@ -42,7 +45,7 @@ if let outletName = data["outlets"][0]["outlet_name"].string {
 The JSON wrapper is courtesy of [mattdonnelly's Swifter: a Twitter Framework written in Swift.](https://github.com/mattdonnelly/Swifter).
 
 ## Obtaining an API Key
-You need a valid API key to access the uWaterloo OpenData API; you can get one [here](https://api.uwaterloo.ca).
+You need a valid API key to access the uWaterloo OpenData API; you can [get one here](https://api.uwaterloo.ca).
 
 ## Official API + Documentation
 The Official API Documentation can be found on [Waterloo's API Documentation Repo ](https://github.com/uWaterloo/api-documentation).
